@@ -1,0 +1,45 @@
+<div class="panel-margin">
+	<md-toolbar class="md-primary " style="padding:0">
+	<div class="md-toolbar-tools">
+		<h2 class="md-flex">LISTA DE SOLICITUDES</h2>
+		<span flex></span>
+	</div>
+	</md-toolbar>
+	<md-content style="padding:8px" ng-init="listarSolicitudes()">
+    
+        <mi-tabla fila-pagina="10" filtrar="true" mi-lista="solicitudes" height="560px" layout="column">
+        
+            <mi-tool >
+                <md-button class="md-raised md-primary md-mini" ng-click="listarSolicitudes()" aria-label="refrescar">
+                    <md-icon md-svg-src="../resources/img/icons/refresh.svg"></md-icon>
+                </md-button>
+            </mi-tool>
+            <mi-head mi-order val="Nom" label="Nombre" style="text-align:center;width:250px"></mi-head>
+            <mi-head style="text-align:center;width:auto;min-width: 250px;">Apellidos</mi-head>
+            <mi-head mi-order val="dni" label="dni" style="text-align:center;width:150px"></mi-head>
+            <mi-head mi-order val="FecEnv" label="Fecha" style="text-align:center;width:200px"></mi-head>
+            <mi-head mi-order val="producto" label="Pack" style="text-align:center;width:250px"></mi-head>
+            <mi-head mi-order val="MonPag" label="Monto" style="text-align:center;width:150px"></mi-head>
+            <mi-head style="text-align:center;width:113px;min-width: 113px;">acciones</mi-head>
+            
+            <mi-body style="text-align:center">{{o.Nom}}</mi-body>
+            <mi-body >{{o.PriApe}} {{o.SegApe}}</mi-body>
+            <mi-body style="text-align:center">{{o.dni}}</mi-body>
+            <mi-body style="text-align:center">{{o.FecEnv}}</mi-body>
+            <mi-body style="text-align:center">{{o.producto}}</mi-body>
+            <mi-body style="text-align:center;">{{o.MonPag}}</mi-body>
+            <mi-body style="text-align:center;padding: 0;">
+                <md-button class="md-fab button-peque md-primary" aria-label="Eat cake" ng-click="verDatos($event,o)" title="ver" style="margin-right:0">
+                    <md-icon md-svg-src="../resources/img/icons/ver.svg"></md-icon>
+                </md-button>
+                <md-button class="md-fab button-peque md-primary" aria-label="Use Android" ng-click="prepararConfirmacion($event,o,usuario.UseId)" title="confirmar" style="margin-left:0">
+                    <md-icon md-svg-src="../resources/img/icons/confirmar.svg"></md-icon>
+                </md-button>
+            </mi-body>
+        </mi-tabla>
+
+
+	</md-content>	
+</div>
+
+	

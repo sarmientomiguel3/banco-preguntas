@@ -1,0 +1,229 @@
+<md-toolbar class="md-primary " style="padding:0">
+	<div class="md-toolbar-tools"><h2 class="md-flex">ESTADISTICAS</h2>
+	</div>
+
+</md-toolbar>				
+
+			<div ng-cloak="" class="tabsdemoDynamicHeight" >
+					<md-content layout layout-wrap layout-xs="column" layout-padding>
+						<div flex="100" flex-xs="100"> 
+					  <md-tabs md-dynamic-height="" md-border-bottom="padding" md-center-tabs>
+						<md-tab label="HECHAS">								
+						  <md-content class="md-padding">
+								<md-toolbar class="md-primary " >
+										<div class="md-toolbar-tools">
+											<h2 class="md-flex">LISTA DE PREGUNTAS HECHAS</h2>
+											<md-icon md-svg-src="../resources/img/menu/hechas.svg"></md-icon>
+											<span flex></span>
+											
+										</div>
+										</md-toolbar>
+										<!-- <md-content layout layout-xs="column" style="padding:20px">
+										<table style="width:100%;" data-ng-init="listarEstadisticas()" class="table table-hover table-striped">
+											<thead>
+												<tr>
+													<th style="text-align:center">ID</th>
+													<th style="text-align:center">Docente</th>
+													<th style="text-align:center;">Pregunta</th>
+													<th style="text-align:center">Revisor1</th>
+													<th style="text-align:center">Revisor2</th>
+													<th style="text-align:center">EstadoRev1</th>
+													<th style="text-align:center">EstadoRev2</th>
+													<th style="text-align:center">Observaciones</th>
+													<th style="text-align:center">Acciones</th>
+												</tr>
+											</thead>
+											<tbody >
+												<tr ng-repeat="p in listaEstadisticas">
+													<td style="text-align:center">{{p.IdPreUsu}}</td>
+													<td style="text-align:center">{{p.IdDoc}}</td>
+													<td style="text-align:center;">{{p.IdPre}}</td>
+													<td style="text-align:center;">{{p.IdRev1}}</td>
+													<td style="text-align:center;">{{p.IdRev2}}</td>
+													<td style="text-align:center;">{{p.EstRev1}}</td>
+													<td style="text-align:center;">{{p.EstRev2}}</td>
+													<td style="text-align:center;">{{p.Obs}}</td>
+													
+									
+													<td style="text-align:center;padding: 0;width:80px">
+													<md-button class="md-fab button-peque md-primary" aria-label="Eat cake" ng-click="prepararEditar($event,v)" style="margin-right:0">
+														<md-icon md-svg-src="../resources/img/icons/editar.svg"></md-icon>
+													</md-button>
+													
+													</td>
+												</tr>
+
+												
+											</tbody>
+										</table>
+										</md-content>	 -->
+										<md-content style="padding:8px" ng-init="listarEstadisticas()">
+											<mi-tabla fila-pagina="10" mi-lista="listaEstadisticas" height="560px" filtrar="true" layout="column">
+												<mi-tool >
+													<md-button class="md-raised md-mini md-primary" ng-click="listarEstadisticas()" aria-label="refrescar">
+														<md-icon md-svg-src="../resources/img/icons/refresh.svg"></md-icon>
+													</md-button>
+												</mi-tool>
+												<mi-head mi-order val="ID" label="ID" style="text-align:center;width:150px"></mi-head>
+												<mi-head mi-order val="Docente" label="Docente" style="text-align:center;width:150px"></mi-head>
+												<mi-head mi-order val="Pregunta" label="Pregunta" style="text-align:center;width:150px"></mi-head>
+												<mi-head mi-order val="Revisor1" label="Revisor1" style="text-align:center;width:150px"></mi-head>
+												<mi-head mi-order val="Revisor2" label="Revisor2" style="text-align:center;width:150px"></mi-head>
+												<mi-head mi-order val="EstadoRev1" label="EstadoRev1" style="text-align:center;width:150px"></mi-head>
+												<mi-head mi-order val="EstadoRev2" label="EstadoRev2" style="text-align:center;width:150px"></mi-head>
+												<mi-head mi-order val="Observaciones" label="Observaciones" style="text-align:center;width:150px"></mi-head>
+												
+												
+												<mi-body style="text-align:center">{{o.IdPreUsu}}</mi-body>
+												<mi-body style="text-align:center">{{o.NomUsu}}</mi-body>
+												<mi-body style="text-align:center">{{o.IdPre}}</mi-body>
+												<mi-body style="text-align:center">{{o.IdRev1}}</mi-body>
+												<mi-body style="text-align:center">{{o.IdRev2}}</mi-body>
+												<mi-body style="text-align:center">{{o.EstRev1}}</mi-body>
+												<mi-body style="text-align:center">{{o.EstRev2}}</mi-body>
+												<mi-body style="text-align:center">{{o.Obs}}</mi-body>
+												
+												
+											</mi-tabla>
+										</md-content> 
+
+								
+						  </md-content>
+						</md-tab>
+						<md-tab label="ACEPTADAS">
+						  <md-content class="md-padding">
+								<md-toolbar class="md-primary " >
+										<div class="md-toolbar-tools">
+											<h2 class="md-flex">LISTA DE PREGUNTAS ACEPTADAS</h2>
+											<md-icon md-svg-src="../resources/img/menu/aceptadas.svg"></md-icon>
+											<span flex></span>
+											
+										</div>
+									</md-toolbar>
+
+									<md-content style="padding:8px" ng-init="listarEstadisticasAceptadas()">
+										<mi-tabla fila-pagina="10" mi-lista="listaEstadisticasAceptadas" height="560px" filtrar="true" layout="column">
+											<mi-tool >
+												<md-button class="md-raised md-mini md-primary" ng-click="listarEstadisticasAceptadas()" aria-label="refrescar">
+													<md-icon md-svg-src="../resources/img/icons/refresh.svg"></md-icon>
+												</md-button>
+											</mi-tool>
+											<mi-head mi-order val="ID" label="ID" style="text-align:center;width:150px"></mi-head>
+											<mi-head mi-order val="Docente" label="Docente" style="text-align:center;width:150px"></mi-head>
+											<mi-head mi-order val="Pregunta" label="Pregunta" style="text-align:center;width:150px"></mi-head>
+											<mi-head mi-order val="Revisor1" label="Revisor1" style="text-align:center;width:150px"></mi-head>
+											<mi-head mi-order val="Revisor2" label="Revisor2" style="text-align:center;width:150px"></mi-head>
+											<mi-head mi-order val="EstadoRev1" label="EstadoRev1" style="text-align:center;width:150px"></mi-head>
+											<mi-head mi-order val="EstadoRev2" label="EstadoRev2" style="text-align:center;width:150px"></mi-head>
+											<mi-head mi-order val="Observaciones" label="Observaciones" style="text-align:center;width:150px"></mi-head>
+											
+											
+											<mi-body style="text-align:center">{{o.IdPreUsu}}</mi-body>
+											<mi-body style="text-align:center">{{o.NomUsu}}</mi-body>
+											<mi-body style="text-align:center">{{o.IdPre}}</mi-body>
+											<mi-body style="text-align:center">{{o.IdRev1}}</mi-body>
+											<mi-body style="text-align:center">{{o.IdRev2}}</mi-body>
+											<mi-body style="text-align:center">{{o.EstRev1}}</mi-body>
+											<mi-body style="text-align:center">{{o.EstRev2}}</mi-body>
+											<mi-body style="text-align:center">{{o.Obs}}</mi-body>
+											
+											
+										</mi-tabla>
+									</md-content> 
+				
+										
+							</md-content>			
+						</md-tab>
+
+						<md-tab label="RECHAZADAS">
+
+								<!-- <md-toolbar class="md-primary " >
+										<div class="md-toolbar-tools">
+											<h2 class="md-flex">LISTA DE PREGUNTAS RECHAZADAS</h2>
+											<md-icon md-svg-src="../resources/img/menu/rechazadas.svg"></md-icon>
+											<span flex></span>
+											
+										</div>
+										</md-toolbar>
+										<md-content layout layout-xs="column" style="padding:8px">
+										<table style="width:100%;" data-ng-init="listarEstadisticasRechazadas()" class="table table-hover table-striped">
+											<thead>
+												<tr>
+													<th style="text-align:center">ID</th>
+													<th style="text-align:center">Docente</th>
+													<th style="text-align:center;">Pregunta</th>
+													<th style="text-align:center">Revisor1</th>
+													<th style="text-align:center">Revisor2</th>
+													<th style="text-align:center">EstadoRev1</th>
+													<th style="text-align:center">EstadoRev2</th>
+													<th style="text-align:center">Observaciones</th>
+													<th style="text-align:center">Acciones</th>
+												</tr>
+											</thead>
+											<tbody >
+												<tr ng-repeat="p in listaEstadisticasRechazadas">
+													<td style="text-align:center">{{p.IdPreUsu}}</td>
+													<td style="text-align:center">{{p.IdDoc}}</td>
+													<td style="text-align:center;">{{p.IdPre}}</td>
+													<td style="text-align:center;">{{p.IdRev1}}</td>
+													<td style="text-align:center;">{{p.IdRev2}}</td>
+													<td style="text-align:center;">{{p.EstRev1}}</td>
+													<td style="text-align:center;">{{p.EstRev2}}</td>
+													<td style="text-align:center;">{{p.Obs}}</td>
+									
+													<td style="text-align:center;padding: 0;width:80px">
+													<md-button class="md-fab button-peque md-primary" aria-label="Eat cake" ng-click="prepararEditar($event,v)" style="margin-right:0">
+														<md-icon md-svg-src="../resources/img/icons/editar.svg"></md-icon>
+													</md-button>
+													
+													</td>
+												</tr>
+											</tbody>
+										</table>
+										</md-content> -->	
+										<md-content style="padding:8px" ng-init="listarEstadisticasRechazadas()">
+											<mi-tabla fila-pagina="10" mi-lista="listaEstadisticasRechazadas" height="560px" filtrar="true" layout="column">
+												<mi-tool >
+													<md-button class="md-raised md-mini md-primary" ng-click="listarEstadisticasRechazadas()" aria-label="refrescar">
+														<md-icon md-svg-src="../resources/img/icons/refresh.svg"></md-icon>
+													</md-button>
+												</mi-tool>
+												<mi-head mi-order val="ID" label="ID" style="text-align:center;width:150px"></mi-head>
+												<mi-head mi-order val="Docente" label="Docente" style="text-align:center;width:150px"></mi-head>
+												<mi-head mi-order val="Pregunta" label="Pregunta" style="text-align:center;width:150px"></mi-head>
+												<mi-head mi-order val="Revisor1" label="Revisor1" style="text-align:center;width:150px"></mi-head>
+												<mi-head mi-order val="Revisor2" label="Revisor2" style="text-align:center;width:150px"></mi-head>
+												<mi-head mi-order val="EstadoRev1" label="EstadoRev1" style="text-align:center;width:150px"></mi-head>
+												<mi-head mi-order val="EstadoRev2" label="EstadoRev2" style="text-align:center;width:150px"></mi-head>
+												<mi-head mi-order val="Observaciones" label="Observaciones" style="text-align:center;width:150px"></mi-head>
+												
+												
+												<mi-body style="text-align:center">{{o.IdPreUsu}}</mi-body>
+												<mi-body style="text-align:center">{{o.NomUsu}}</mi-body>
+												<mi-body style="text-align:center">{{o.IdPre}}</mi-body>
+												<mi-body style="text-align:center">{{o.IdRev1}}</mi-body>
+												<mi-body style="text-align:center">{{o.IdRev2}}</mi-body>
+												<mi-body style="text-align:center">{{o.EstRev1}}</mi-body>
+												<mi-body style="text-align:center">{{o.EstRev2}}</mi-body>
+												<mi-body style="text-align:center">{{o.Obs}}</mi-body>
+												
+												
+											</mi-tabla>
+										</md-content>
+
+
+						</md-tab>
+
+					  </md-tabs>
+					</div>
+					</md-content>
+				 
+</div>
+		
+		
+
+		
+	
+
+	
+	

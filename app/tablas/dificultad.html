@@ -1,0 +1,42 @@
+<div class="my-section">
+	<div class="my-content">
+		<md-toolbar class="md-primary " >
+		<div class="md-toolbar-tools">
+			<h2 class="md-flex">Lista de dificultad de pregunta</h2>
+			<span flex></span>
+			<md-button class="md-raised md-primary" ng-click="prepareNew($event)" title="registar dificultad">Nuevo</md-button>
+			<md-button class="md-raised" ng-click="list()" title="listar de dificultad">Listar</md-button>
+		</div>
+		</md-toolbar>
+		<md-content layout layout-xs="column" style="padding:8px">
+			<table style="width:100%;" data-ng-init="list()" class="table table-hover table-striped">
+				<thead>
+					<tr>
+						<th style="text-align:center">ID</th>
+						<th style="text-align:center">Dificultad</th>
+						<th style="text-align:center;">Estado</th>
+						<th style="text-align:center">accion</th>
+					</tr>
+				</thead>
+				<tbody >
+					<tr ng-repeat="d in listRegisters">
+						<td style="text-align:center">{{d.IdDif}}</td>
+						<td style="text-align:center">{{d.DesDif}}</td>
+						<td style="text-align:center;">{{d.EstReg}}</td>
+						<td style="text-align:center;padding: 0;width:120px">
+							<md-button class="md-fab button-peque md-primary" aria-label="Eat cake" ng-click="prepareUpdate($event,d)" title="editar dificultad" style="margin-right:0">
+								<md-icon md-svg-src="../resources/img/icons/editar.svg"></md-icon>
+							</md-button>
+							<!-- <md-button class="md-fab button-peque md-primary" aria-label="Eat cake" ng-click="prepareConfig(d)" title="cofigurar dificultad" style="margin-right:0">
+								<md-icon md-svg-src="../resources/img/icons/go.svg"></md-icon>
+							</md-button> -->
+							<md-button class="md-fab button-peque" aria-label="Use Android" ng-click="deleteRegister($index,d)" title="eliminar" style="margin-left:0">
+								<md-icon md-svg-src="../resources/img/icons/eliminar.svg"></md-icon>
+							</md-button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</md-content>
+	</div>
+</div>

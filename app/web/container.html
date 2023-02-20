@@ -1,0 +1,49 @@
+<div class="my-section">
+	<div class="my-content">
+		<div class="md-toolbar-tools">
+			<h2 class="md-flex">Pagina Web: {{website.Tit}}</h2>
+			<span flex></span>
+			<md-button class="md-raised" ng-click="prevWebSite()" title="regresar a mis paginas">atras</md-button>
+			<md-button class="md-raised" ng-click="showWebSite(website.WebSitID)" title="ver la pagina web">ver pagina</md-button>
+		</div>
+	</div>
+</div>
+<div class="my-section">
+	<div class="my-content">
+		<md-toolbar class="md-primary " >
+		<div class="md-toolbar-tools">
+			<h2 class="md-flex">Secciones</h2>
+			<span flex></span>
+			<md-button class="md-raised md-primary" ng-click="prepareNew($event)" title="registrar una seccion">Nuevo</md-button>
+			<md-button class="md-raised" ng-click="list()" title="listar las secciones">Listar</md-button>
+		</div>
+		</md-toolbar>
+		<md-content layout layout-xs="column" style="padding:8px">
+			<table style="width:100%;" data-ng-init="verify(website)?list():false;" class="table table-hover table-striped">
+				<thead>
+					<tr>
+						<th style="text-align:center">N Orden</th>
+						<th style="text-align:center">Titulo</th>
+						<th style="text-align:center;">Url</th>
+						<th style="text-align:center">accion</th>
+					</tr>
+				</thead>
+				<tbody >
+					<tr ng-repeat="r in listRegisters">
+						<td style="text-align:center">{{r.Ord}}</td>
+						<td style="text-align:center">{{r.Tit}}</td>
+						<td style="text-align:center;">{{r.Url}}</td>			
+						<td style="text-align:center;padding: 0;width:80px">
+						<md-button class="md-fab button-peque md-primary" aria-label="Eat cake" ng-click="prepareUpdate($event,r)" title="editar seccion" style="margin-right:0">
+							<md-icon md-svg-src="../resources/img/icons/editar.svg"></md-icon>
+						</md-button>
+						<md-button class="md-fab button-peque" aria-label="Use Android" ng-click="deleteRegister($index,r)" title="eliminar seccion" style="margin-left:0">
+							<md-icon md-svg-src="../resources/img/icons/eliminar.svg"></md-icon>
+						</md-button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</md-content>
+	</div>
+</div>

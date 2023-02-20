@@ -1,0 +1,24 @@
+<md-content style="padding:24px 16px 8px" layout="column"  >  
+
+    <fieldset class="mi-fieldset" style="margin:0"><legend >Resumen Periodos</legend></fieldset>
+    <md-content layout layout-xs="column" style="margin-bottom: 15px;" align="center">
+        <canvas id="myChart" width="600" height="170"></canvas>
+    </md-content>
+	<fieldset class="mi-fieldset" style="margin:0"><legend >Periodo Actual</legend></fieldset>
+	<div layout layout-xs="column" ng-hide="!estado">
+	
+		<div flex style="background: #b9f6ca;padding: 0px 18px;">
+			<h4>Periodo Taured se inicio el: <strong>{{periodoActual.FecIni}}</strong></h4>
+		</div>
+		
+		<md-button class="md-raised md-warn" ng-disabled="!estado" ng-click="finalizarPeriodo($event)" style="margin: 0 auto;">Finalizar Periodo Taured</md-button>
+	</div>	
+	
+	<div layout layout-xs="column" >
+		<md-button class="md-raised md-primary" ng-if="!estado" ng-click="iniciarPeriodo($event)" style="margin: 0 auto;">Iniciar Nuevo Periodo</md-button>
+	</div>
+  
+</md-content>
+
+
+	

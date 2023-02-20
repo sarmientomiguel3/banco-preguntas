@@ -1,0 +1,46 @@
+<div class="my-section">
+	<div class="my-content">
+		<md-toolbar class="md-primary " >
+		<div class="md-toolbar-tools">
+			<h2 class="md-flex">Lista de libro de preguntas</h2>
+			<span flex></span>
+			<md-button class="md-raised md-primary" ng-click="prepareNew($event)" title="registar dificultad">Nuevo</md-button>
+			<md-button class="md-raised" ng-click="list()" title="listar de libros">Listar</md-button>
+		</div>
+		</md-toolbar>
+		<md-content layout layout-xs="column" style="padding:8px">
+			<table style="width:100%;" data-ng-init="list()" class="table table-hover table-striped">
+				<thead>
+					<tr>
+						<th style="text-align:center">ID</th>
+						<th style="text-align:center">Nombre</th>
+						<th style="text-align:center">Autor</th>
+						<th style="text-align:center;">Editorial</th>
+						<th style="text-align:center;">Estado</th>
+						<th style="text-align:center">accion</th>
+					</tr>
+				</thead>
+				<tbody >
+					<tr ng-repeat="l in listRegisters">
+						<td style="text-align:center">{{l.IDLib}}</td>
+						<td style="text-align:center">{{l.NomLib}}</td>
+						<td style="text-align:center;">{{l.AutLib}}</td>
+						<td style="text-align:center;">{{l.EdiLib}}</td>
+						<td style="text-align:center;">{{l.EstReg}}</td>
+						<td style="text-align:center;padding: 0;width:120px">
+							<md-button class="md-fab button-peque md-primary" aria-label="Eat cake" ng-click="prepareUpdate($event,l)" title="editar libro" style="margin-right:0">
+								<md-icon md-svg-src="../resources/img/icons/editar.svg"></md-icon>
+							</md-button>
+							<md-button class="md-fab button-peque md-primary" aria-label="Eat cake" ng-click="prepareConfig(l)" title="cofigurar libro" style="margin-right:0">
+								<md-icon md-svg-src="../resources/img/icons/go.svg"></md-icon>
+							</md-button>
+							<md-button class="md-fab button-peque" aria-label="Use Android" ng-click="deleteRegister($index,l)" title="eliminar" style="margin-left:0">
+								<md-icon md-svg-src="../resources/img/icons/eliminar.svg"></md-icon>
+							</md-button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</md-content>
+	</div>
+</div>

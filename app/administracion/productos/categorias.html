@@ -1,0 +1,59 @@
+<md-toolbar class="md-primary " style="padding: 0">
+<div class="md-toolbar-tools"><h2 class="md-flex">REGISTRO DE CATEGORIA</h2>
+</div>
+</md-toolbar>
+<md-content layout layout-wrap layout-sm="column" layout-padding="0">
+	
+	<div flex="100" flex-xs="100">
+		<div layout >
+			<md-input-container class="md-block" flex="20" style="padding-right: 10px;">
+			  <label>Prefijo</label>
+			  <input type="text" ng-model="categoria.Pre" md-maxlength="3"/>
+			</md-input-container>
+			<md-input-container class="md-block" flex="80">
+			  <label>Nombre del categoria</label>
+			  <input type="text" ng-model="categoria.Nom" md-maxlength="32"/>
+			</md-input-container>
+		</div>
+		
+		<md-input-container class="md-block">
+		  <label>Descripcion del categoria</label>
+		  <input type="text" md-maxlength="255" ng-model="categoria.Des" />
+		</md-input-container>
+	</div>
+	<div flex="100" >
+		<md-button class="md-raised md-primary" ng-click="registrarCategoria()">Registrar</md-button>		
+	</div>
+</md-content><br/>
+
+<md-toolbar class="md-primary " style="padding:0" >
+<div class="md-toolbar-tools">
+    <h2 class="md-flex">LISTA DE CATEGORIAS</h2>
+    <span flex></span>
+</div>
+</md-toolbar>
+<md-content style="padding:8px" ng-init="listarCategorias()">
+    <mi-tabla fila-pagina="10" mi-lista="listaCategorias" height="560px" filtrar="true" layout="column">
+        <mi-tool >
+            <md-button class="md-raised md-mini md-primary" ng-click="listarCategorias()" aria-label="refrescar">
+                <md-icon md-svg-src="../resources/img/icons/refresh.svg"></md-icon>
+            </md-button>
+        </mi-tool>
+        <mi-head mi-order val="Pre" label="Prefijo" style="text-align:center;width:150px"></mi-head>
+        <mi-head mi-order val="Nom" label="Nombre" style="text-align:center;width:250px"></mi-head>
+        <mi-head style="width:auto;min-width: 250px;">Descripcion</mi-head>
+        <mi-head style="text-align:center;width:113px;min-width: 113px;">acciones</mi-head>
+        
+        <mi-body style="text-align:center">{{o.Pre}}</mi-body>
+        <mi-body style="text-align:center">{{o.Nom}}</mi-body>
+        <mi-body >{{o.Des}}</mi-body>
+        <mi-body style="text-align:center;padding: 0;">
+            <md-button class="md-fab button-peque md-primary" aria-label="Eat cake" ng-click="prepararEditar($event,o)" style="margin-right:0">
+                <md-icon md-svg-src="../resources/img/icons/editar.svg"></md-icon>
+            </md-button>
+            <md-button class="md-fab button-peque" aria-label="Use Android" ng-click="eliminarCategoria($event,$index,o)" style="margin-left:0">
+                <md-icon md-svg-src="../resources/img/icons/eliminar.svg"></md-icon>
+            </md-button>
+        </mi-body>
+    </mi-tabla>
+</md-content>

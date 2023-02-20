@@ -1,0 +1,41 @@
+<div align="center">
+<md-toolbar class="md-primary " style="padding:0;max-width:600px;font-size: inherit">
+<div class="md-toolbar-tools"><h2 class="md-flex">DATOS DE EMPRESA</h2>
+</div>
+</md-toolbar>
+<md-content layout="column" align="left" style="padding:24px;max-width:600px" ng-init="buscarEmpresa()" >
+    
+    <div layout layout-xs="column" >
+        <md-input-container flex>
+          <label>Codigo</label>
+          <input type="text" ng-model="empresa.OrgID" style="color:rgba(0,0,0,0.87)" disabled/>
+        </md-input-container>
+    </div>
+    <div layout layout-xs="column" >
+        <md-input-container flex>
+          <label>Nombre Completo</label>
+          <input type="text" md-maxlength="64" ng-model="empresa.Nam" />
+        </md-input-container>
+    </div>
+    <div layout layout-xs="column" >
+        <md-input-container flex>
+          <label>Breve descripcion</label>
+          <input type="text" md-maxlength="64" ng-model="empresa.Des" />
+        </md-input-container>
+    </div>
+    <div layout layout-xs="column" >
+        <md-input-container flex>
+          <label>Email</label>
+          <input type="text" ng-model="empresa.Ema" />
+        </md-input-container>
+    </div>
+    <div layout layout-align="center center" flex class="layout-padding3" >
+		<md-button class="md-raised md-primary" ng-click="guardarDatosEmpresa($event)" >Guardar</md-button>
+	</div>
+  
+</md-content>
+</div>
+
+
+
+	

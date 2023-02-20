@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html ng-app="miLogin" lang="en" class="no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta name="description" content="BancoUnsa">
+	<meta name="author" content="virex">
+
+	<title>BancoUnsa</title>
+
+	<link rel="shortcut icon" href="resources/img/logo-p.png">
+	<link rel="stylesheet" href="resources/css/angular-material.min.css"></link>
+	<link href="resources/css/login.css" rel="stylesheet"></link>
+	<link href="resources/lib/mathquill.css" rel="stylesheet">
+	<link href="resources/lib/matheditor.css" rel="stylesheet">
+</head>
+
+<body layout="row">
+
+	
+
+<div class="background-loader" ng-class="{'background-load' : usuIni }"></div>
+
+<div layout="column" tabIndex="-1" flex style="width: inherit; height: inherit;display:none" ng-class="{'mostrar' : usuIni }">
+
+<md-content flex style="background: #ecf1f5;padding:8px;" >
+
+
+	<form class="form-signin" role="form" novalidate style="margin-top: 10vh;">
+		<h2 class="form-signin-heading">GBPUNSA</h2>
+
+		<div class="dont-have-account">
+			<img src="resources/img/logo.png" style="width:150px; height:60px;">
+		</div>
+
+		<div layout="column">
+			<md-input-container class="md-has-icon" flex>
+				<md-icon md-svg-src="resources/img/icons/usuario.svg" style="color:rgb(30, 32, 47);"></md-icon>
+				<label>Usuario</label>
+				<input type="text" required="" ng-model="usuIni.nom" />
+				<div ng-messages="projectForm.description.$error">
+					<div ng-message="required">El usuario es requerido.</div>
+				</div>
+			</md-input-container>
+			<md-input-container class="md-has-icon" flex>
+				<md-icon md-svg-src="resources/img/icons/clave.svg" style="color:rgb(30, 32, 47)"></md-icon>
+				<label>Password</label>
+				<input type="password" required="" ng-model="usuIni.pas" />
+				<div ng-messages="projectForm.description.$error">
+					<div ng-message="required">El password es requerido.</div>
+				</div>
+			</md-input-container>
+            <br/>
+            <div layout="column" flex>
+                <md-button class="md-raised md-primary" type="submit" ng-disabled="loger || !usuIni.nom || usuIni.nom=='' || !usuIni.pas ||usuIni.pas==''" ng-click="iniciarSession()">Iniciar Session</md-button>
+            </div>
+		</div>
+	</form>
+	<!--<h5 class="dont-have-account"><md-button class="md-primary" ng-href="/webside/index.html" >see my website</md-button></h5>-->
+
+</md-content>
+</div>
+
+<script src="resources/js/angular.min.js"></script>
+<script src="resources/js/angular-animate.min.js"></script>
+<script src="resources/js/angular-aria.min.js"></script>
+
+<script src="resources/js/angular-material.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="resources/lib/mathquill.min.js"></script>
+<script src="resources/lib/matheditor.js"></script>
+
+
+<!--Fin Añadiendo los plugin de angularjs-->
+
+<script type="text/javascript">
+	document.write("<scr" + "ipt language=\"JavaScript\" src=\"appLogin.js\"></scr" + "ipt>");
+
+	
+</script>
+
+</body>
+</html>

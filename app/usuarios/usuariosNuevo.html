@@ -1,0 +1,142 @@
+<md-content>
+	
+	<md-tabs md-dynamic-height md-border-bottom>
+		<md-tab label="DATOS PERSONALES">
+			<div layout-xs="column" layout layout-margin ng-init="copiarDatos(nuevoUsuario)">
+				
+				<div flex>
+					<div layout layout-xs="column">
+						<md-input-container flex>
+							<label>Documento de identidad</label>
+							<input type="text" md-maxlength="8" ng-model="nuevoUsuario.persona.dni"
+								style="color:rgba(0,0,0,0.87)" />
+						</md-input-container>
+					</div>
+					<div layout layout-xs="column">
+						<md-input-container flex>
+							<label>Nombre(s)</label>
+							<input type="text" md-maxlength="64" ng-model="nuevoUsuario.persona.Nom"
+								style="color:rgba(0,0,0,0.87)" />
+						</md-input-container>
+					</div>
+					<div layout layout-xs="column">
+						<md-input-container flex>
+							<label>Primer Apellido</label>
+							<input type="text" md-maxlength="32" ng-model="nuevoUsuario.persona.PriApe"
+								style="color:rgba(0,0,0,0.87)" />
+						</md-input-container>
+						<md-input-container flex>
+							<label>Segundo Apellido</label>
+							<input type="text" md-maxlength="32" ng-model="nuevoUsuario.persona.SegApe"
+								style="color:rgba(0,0,0,0.87)" />
+						</md-input-container>
+					</div>
+					<div layout layout-xs="column">
+						<md-input-container flex-order-gt-md="30" flex>
+							<label>Fecha Nacimiento</label>
+							<input type="date" ng-model="nuevoUsuario.persona.FecNac" style="color:rgba(0,0,0,0.87)" />
+						</md-input-container>
+					</div>
+					<div layout layout-xs="column">
+						<md-input-container class="md-input-focused" flex>
+							<label style="color: rgba(0,0,0,0.54)">Sexo</label>
+							<md-radio-group ng-model="nuevoUsuario.persona.SexId" style="display:flex">
+								<md-radio-button value="F" style="margin: 5px;" class="md-primary">Femenino
+								</md-radio-button>
+								<md-radio-button value="M" style="margin: 5px;" class="md-primary">Masculino
+								</md-radio-button>
+							</md-radio-group>
+						</md-input-container>
+					</div>
+					<div layout layout-xs="column">
+						<md-input-container flex>
+							<label>Numero Celular</label>
+							<input type="text" ng-model="nuevoUsuario.persona.Tel" style="color:rgba(0,0,0,0.87)" />
+						</md-input-container>
+						<md-input-container flex>
+							<label>Correo Electronico</label>
+							<input type="text" ng-model="nuevoUsuario.persona.Ema" style="color:rgba(0,0,0,0.87)" />
+						</md-input-container>
+					</div>
+					<div layout layout-xs="column">
+						<md-input-container flex>
+							<label>Pais</label>
+							<md-select ng-model="nuevoUsuario.persona.PaiID">
+								<md-option ng-repeat="pais in paises" ng-value="pais.PaiID">
+									{{pais.Nom}}
+								</md-option>
+							</md-select>
+						</md-input-container>
+						<md-input-container flex>
+							<label>Ciudad o Provincia</label>
+							<input type="text" ng-model="nuevoUsuario.persona.CiuPro" style="color:rgba(0,0,0,0.87)" />
+						</md-input-container>
+					</div>
+					<div layout layout-xs="column">
+						<md-input-container flex>
+							<label>Direccion de recidencia actual</label>
+							<input type="text" ng-model="nuevoUsuario.persona.DirAct" style="color:rgba(0,0,0,0.87)" />
+						</md-input-container>
+					</div>
+				</div>
+			</div>
+		</md-tab>
+		<md-tab label="DATOS USUARIO Y ROLES ASIGNADOS">
+			<div layout-xs="column" layout layout-margin>
+				<div flex-xs="100" flex="50">
+					<md-toolbar class="md-primary " style="padding:0">
+						<div class="md-toolbar-tools">
+							<h2 class="md-flex">DATOS USUARIO</h2>
+						</div>
+					</md-toolbar>
+					<div class="md-padding" style="padding-top: 16px;"></div>
+					<div layout="column" style="max-width:600px;margin: 0 auto;">
+						<md-input-container flex>
+							<label>Nombre Usuario</label>
+							<input type="text" ng-model="nuevoUsuario.User.NomUsu" style="color:rgba(0,0,0,0.87)" />
+						</md-input-container>
+						<md-input-container flex>
+							<label>Nueva Contraseña</label>
+							<input type="password" md-maxlength="16" ng-model="nuevoUsuario.User.pasNuevo" />
+						</md-input-container>
+						<md-input-container flex>
+							<label>Repita Contraseña</label>
+							<input type="password" md-maxlength="16" ng-model="nuevoUsuario.User.confirmacionPas" />
+						</md-input-container>
+					</div>
+				</div>
+				<div flex-xs="100" flex="50">
+					<md-toolbar class="md-primary " style="padding:0">
+						<div class="md-toolbar-tools">
+							<h2 class="md-flex">ROLES ASIGNADOS</h2>
+						</div>
+					</md-toolbar>
+					<div class="md-padding" style="padding-top: 16px;"></div>
+
+
+					
+					<div ng-init="cargarRoles()">
+
+						<label>Rol</label>
+						<md-select ng-model="nuevoUsuario.User.IdRol">
+							<!-- <md-option ng-value="null" ></md-option> -->
+							<md-option ng-repeat="t in listRoles" ng-value="t.RolID">
+							{{t.Nom}}
+							</md-option>
+						</md-select>
+
+					</div>
+				</div>
+			</div>
+			<div flex="100">
+				<div layout layout-align="center center" flex>
+					<md-button class="md-raised" ng-click="copiarDatos(nuevoUsuario)">Cancelar</md-button>
+					<md-button class="md-raised md-primary" ng-click="guardarCambios($event,nuevoUsuario)">Guardar
+						Cambios</md-button>
+				</div>
+			</div>
+
+		</md-tab>
+
+	</md-tabs>
+</md-content>

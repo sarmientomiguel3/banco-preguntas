@@ -1,0 +1,93 @@
+<md-dialog aria-label="Editar Categoria" style="width:500px">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Datos del Distribuidor</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancelar()">
+          <md-icon md-svg-src="../resources/img/icons/cerrar.svg" aria-label="cerrar dialogo"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:900px;max-height:810px; ">
+      <div class="md-dialog-content" layout="column">
+			<md-input-container class="md-block">
+			  <label>Codigo Patrocinador</label>
+			  <input type="text" ng-model="datosSel.DisID" style="color:rgba(0,0,0,0.87)" disabled/>
+			</md-input-container>
+			<md-input-container class="md-block">
+			  <label>Nombres</label>
+			  <input type="text" ng-model="datosSel.Nom" style="color:rgba(0,0,0,0.87)" />
+			</md-input-container>
+			<div layout layout-xs="column" >
+			<md-input-container flex>
+			  <label>Primer Apellido</label>
+			  <input type="text" ng-model="datosSel.PriApe" style="color:rgba(0,0,0,0.87)" />
+			</md-input-container>
+			<md-input-container flex>
+			  <label>Segundo Apellido</label>
+			  <input type="text" ng-model="datosSel.SegApe" style="color:rgba(0,0,0,0.87)" />
+			</md-input-container>
+			</div>
+			<md-input-container class="md-block">
+			  <label>Fecha Nacimiento</label>
+			  <input type="text" ng-model="datosSel.FecNac" style="color:rgba(0,0,0,0.87)" disabled/>
+			</md-input-container>
+			<div layout layout-xs="column" >
+			<md-input-container flex>
+			  <label>Sexo</label>
+			  <input type="text" ng-model="datosSel.SexId" style="color:rgba(0,0,0,0.87)" disabled/>
+			</md-input-container>
+			</div>
+			<div layout layout-xs="column" >
+			<md-input-container flex>
+			  <label>Correo Electronico</label>
+			  <input type="text" ng-model="datosSel.Ema" style="color:rgba(0,0,0,0.87)" />
+			</md-input-container>
+			<md-input-container flex>
+			  <label>Numero Telefono</label>
+			  <input type="text" ng-model="datosSel.Tel" style="color:rgba(0,0,0,0.87)" />
+			</md-input-container>
+			</div>
+			<div layout layout-xs="column" >
+			<md-input-container flex>
+			  <label>Ciudad/Provincia</label>
+			  <input type="text" ng-model="datosSel.CiuPro" style="color:rgba(0,0,0,0.87)" disabled/>
+			</md-input-container>
+			<md-input-container flex>
+			  <label>Pais</label>
+			  <input type="text" ng-model="datosSel.pais" style="color:rgba(0,0,0,0.87)" disabled/>
+			</md-input-container>
+			</div>
+			<md-input-container class="md-block">
+			  <label>Direccion</label>
+			  <input type="text" ng-model="datosSel.DirAct" style="color:rgba(0,0,0,0.87)" disabled/>
+			</md-input-container>
+			
+			<div layout layout-xs="column" >
+			<md-input-container flex>
+			  <label>dni</label>
+			  <input type="text" ng-model="datosSel.dni" style="color:rgba(0,0,0,0.87)" disabled/>
+			</md-input-container>
+			<md-input-container flex>
+			  <label>RUC</label>
+			  <input type="text" ng-model="datosSel.RUC" style="color:rgba(0,0,0,0.87)" disabled/>
+			</md-input-container>
+			</div>		
+      </div>
+    </md-dialog-content>
+	
+	<md-dialog-actions layout="row">
+		<md-button class="md-raised md-warn" ng-click="cancelar()" >
+		 Cerrar
+		</md-button>
+		<md-button class="md-raised md-primary" ng-click="guardarCambios()" >
+		  Guardar cambios
+		</md-button>
+        <md-button class="md-raised md-primary" ng-click="enviarDatos()" style="margin-right:20px;" >
+		  Enviar datos
+		</md-button>
+	</md-dialog-actions>
+  </form>
+</md-dialog>
+

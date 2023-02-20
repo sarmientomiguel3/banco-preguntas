@@ -1,0 +1,105 @@
+<md-dialog aria-label="Editar Producto" style="width:600px">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Editar Producto</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancelar()">
+          <md-icon md-svg-src="../resources/img/icons/cerrar.svg" aria-label="cerrar dialogo"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:900px;max-height:810px; ">
+      <div class="md-dialog-content">
+		
+		
+		<div layout >
+			<md-input-container flex>
+				<label>Categoria</label>
+				<md-select ng-model="productoSel.CatID" ng-change="elegirCategoria(productoSel.CatID)" ng-disabled="productoSel.CatID==1">
+					<md-option ng-repeat="categoria in listaCategorias" value="{{categoria.CatID}}">
+					{{categoria.Nom}}
+					</md-option>
+				</md-select>
+			</md-input-container>
+		</div>
+		<div layout >
+			<md-input-container flex="20">
+			  <label>Codigo </label>
+			  <input type="text" ng-model="productoSel.Cod" disabled/>
+			</md-input-container>
+			<md-input-container flex="80">
+			  <label>Nombre del producto</label>
+			  <input type="text" ng-model="productoSel.Nom" />
+			</md-input-container>
+			
+		</div>
+		<div layout layout-xs="column">
+			<md-input-container flex>
+			  <label>Descripcion del producto</label>
+			  <textarea columns="1" md-maxlength="255" rows="5" ng-model="productoSel.Des"></textarea>
+			</md-input-container>
+		</div>
+		<div layout >
+			<md-input-container flex>
+			  <label>Cantidad</label>
+			  <input ng-model="productoSel.Can" style="color:rgba(0,0,0,0.87)" disabled/>
+			</md-input-container>
+			<md-input-container flex>
+				<label>Unidad Medida</label>
+				<md-select ng-model="productoSel.UniMedID">
+					<md-option ng-repeat="unidad in listaUnidades" ng-value="unidad.UniMedID">
+					{{unidad.Nom}}
+					</md-option>
+				</md-select>
+			</md-input-container>
+		</div>
+		<div layout >
+			<md-input-container flex>
+			  <label>Precio</label>
+			  <input ng-model="productoSel.PreCom" />
+			</md-input-container>
+			<md-input-container flex>
+				<label>Moneda</label>
+				<md-select ng-model="productoSel.MonID">
+					<md-option ng-repeat="moneda in listaMonedas" value="{{moneda.MonID}}">
+					{{moneda.Nom}}
+					</md-option>
+				</md-select>
+			</md-input-container>
+		</div>
+		<md-input-container flex class="flex md-input-focused" style="width:50%">
+		  <label style="color: rgba(0,0,0,0.54)">Producto para Venta individual</label>
+		  <md-radio-group ng-model="productoSel.EstReg" style="display:flex">
+			<md-radio-button value="A" style="margin: 5px; 10px" class="md-primary">Si</md-radio-button>
+			<md-radio-button value="I" style="margin: 5px; 10px" >No</md-radio-button>
+		  </md-radio-group>
+		</md-input-container>		
+        
+        <div layout="row" flex="33" flex-xs="100" style="padding:0">
+            <div flex="60" class="mi-img" align="center" style="position:relative;height: 300px;">
+                <input-file archivo="imagen" nombre="productoSel.Img" label="-1"></input-file>
+            </div>
+            <div layout="column" flex>
+                <div class="mi-img" align="center" style="position:relative;height: 150px;">
+                    <input-file archivo="imagen2" nombre="productoSel.Img2" label="-2"></input-file>
+                </div>
+                <div class="mi-img" align="center" style="position:relative;height: 150px;">
+                    <input-file archivo="imagen3" nombre="productoSel.Img3" label="-3"></input-file>
+                </div>
+            </div>		
+        </div>
+      </div>
+    </md-dialog-content>
+	
+	<md-dialog-actions layout="row">
+		<md-button class="md-raised md-warn" ng-click="cancelar()" >
+		 Cancelar
+		</md-button>
+		<md-button class="md-raised md-warn" ng-click="guardarCambios()" style="margin-right:20px;" >
+		  Guardar Cambios
+		</md-button>
+	</md-dialog-actions>
+  </form>
+</md-dialog>
+

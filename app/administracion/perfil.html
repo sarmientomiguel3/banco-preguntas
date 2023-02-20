@@ -1,0 +1,125 @@
+<md-content>
+<md-tabs md-dynamic-height md-border-bottom >
+<md-tab label="DATOS PERSONALES">
+<div layout-xs="column" layout layout-margin ng-init="vm.copiarDatos(usuario)">
+    <div flex-xs="100" flex="30" >
+        <label>Foto</label>
+        <div class="mi-img" align="center" style="height: 300px;">
+            <input-file archivo="vm.imagen" nombre="vm.usuario.Img" label="{{vm.usuario.dni}}" url="usuarios/"></input-file>
+        </div>
+    </div>
+    <div flex>
+        <div layout layout-xs="column" >
+			<md-input-container flex>
+			  <label>Documento de identidad</label>
+			  <input type="text" md-maxlength="8" ng-model="vm.usuario.dni" style="color:rgba(0,0,0,0.87)" disabled/>
+			</md-input-container>
+			<md-input-container flex>
+			  <label>RUC</label>
+			  <input type="text" md-maxlength="11" ng-model="vm.usuario.RUC" style="color:rgba(0,0,0,0.87)" />
+			</md-input-container>
+		</div>
+		<div layout layout-xs="column" >
+			<md-input-container flex>
+			  <label>Nombre(s)</label>
+			  <input type="text" md-maxlength="64" ng-model="vm.usuario.Nom" style="color:rgba(0,0,0,0.87)" />
+			</md-input-container>
+		</div>
+		<div layout layout-xs="column">
+			<md-input-container flex>
+			  <label>Primer Apellido</label>
+			  <input type="text" md-maxlength="32" ng-model="vm.usuario.PriApe" style="color:rgba(0,0,0,0.87)" />
+			</md-input-container>
+			<md-input-container flex>
+			  <label>Segundo Apellido</label>
+			  <input type="text" md-maxlength="32" ng-model="vm.usuario.SegApe" style="color:rgba(0,0,0,0.87)" />
+			</md-input-container>
+		</div>
+        <div layout layout-xs="column" >
+			<md-input-container flex-order-gt-md="30" flex>
+			  <label>Fecha Nacimiento</label>
+			  <input type="date" ng-model="vm.usuario.FecNac" style="color:rgba(0,0,0,0.87)" />
+			</md-input-container>
+        </div>
+		<div layout layout-xs="column" >
+			<md-input-container class="md-input-focused" flex>
+				<label style="color: rgba(0,0,0,0.54)">Sexo</label>
+			    <md-radio-group ng-model="vm.usuario.SexId" style="display:flex">
+					<md-radio-button value="1" style="margin: 5px; 10px" class="md-primary">Femenino</md-radio-button>
+					<md-radio-button value="2" style="margin: 5px; 10px" class="md-primary">Masculino</md-radio-button>
+				</md-radio-group>
+			</md-input-container>
+			<md-input-container class="md-input-focused" flex>
+				<label style="color: rgba(0,0,0,0.54)">Estado Civil</label>
+			    <md-radio-group ng-model="vm.usuario.EstCivID" style="display:flex" >
+					<md-radio-button value="1" style="margin: 5px; 10px" class="md-primary">Soltero</md-radio-button>
+					<md-radio-button value="2" style="margin: 5px; 10px" class="md-primary">Casado</md-radio-button>
+					<md-radio-button value="3" style="margin: 5px; 10px" class="md-primary">Divorciado</md-radio-button>
+				</md-radio-group>
+			</md-input-container>
+		</div>
+		<div layout layout-xs="column" >
+			<md-input-container flex>
+			  <label>Numero Celular</label>
+			  <input type="text" ng-model="vm.usuario.Tel" style="color:rgba(0,0,0,0.87)" />
+			</md-input-container>
+			<md-input-container flex>
+			  <label>Correo Electronico</label>
+			  <input type="text" ng-model="vm.usuario.Ema" style="color:rgba(0,0,0,0.87)" />
+			</md-input-container>
+		</div>
+		<div layout layout-xs="column" >
+            <md-input-container flex>
+				<label>Pais</label>
+				<md-select ng-model="vm.usuario.PaiID" >
+					<md-option ng-repeat="pais in vm.paises" ng-value="pais.PaiID" >
+					{{pais.Nom}}
+					</md-option>
+				</md-select>
+			</md-input-container>
+			<md-input-container flex>
+			  <label>Ciudad o Provincia</label>
+			  <input type="text" ng-model="vm.usuario.CiuPro" style="color:rgba(0,0,0,0.87)" />
+			</md-input-container>
+		</div>
+		<div layout layout-xs="column" >
+			<md-input-container flex>
+			  <label>Direccion de recidencia actual</label>
+			  <input type="text" ng-model="vm.usuario.DirAct" style="color:rgba(0,0,0,0.87)" />
+			</md-input-container>
+		</div>
+    </div>
+</div>
+<div layout layout-align="center center" flex >
+    <md-button class="md-raised" ng-click="vm.copiarDatos(usuario)" >Cancelar</md-button>
+    <md-button class="md-raised md-primary" ng-click="vm.guardarCambios($event,usuario)" >Guardar Cambios</md-button>
+</div> 
+</md-tab>
+<md-tab label="DATOS USUARIO">
+	<div class="md-padding" style="padding-top: 16px;">
+    
+    <div layout="column" style="max-width:600px;margin: 0 auto;">
+        <md-input-container flex>
+          <label>Nombre Usuario</label>
+          <input type="text"  ng-model="vm.NomUsu" style="color:rgba(0,0,0,0.87)" disabled/>
+        </md-input-container>
+        <md-input-container flex>
+          <label>Contraseña Anterior</label>
+          <input type="password" md-maxlength="16" ng-model="vm.pasAnterior" />
+        </md-input-container>
+        <md-input-container flex>
+          <label>Nueva Contraseña</label>
+          <input type="password" md-maxlength="16" ng-model="vm.pasNuevo" />
+        </md-input-container>
+        <md-input-container flex>
+          <label>Repita Contraseña</label>
+          <input type="password" md-maxlength="16" ng-model="vm.confirmacionPas" />
+        </md-input-container>
+    </div>
+    <div layout layout-align="center center" flex class="layout-padding3" >
+        <md-button class="md-raised md-primary" ng-click="vm.cambiarContrasena($event)" >Cambiar Contaseña</md-button>
+    </div>    
+    </div>
+</md-tab>
+</md-tabs>
+</md-content>

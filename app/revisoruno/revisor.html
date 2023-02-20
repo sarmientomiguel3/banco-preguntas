@@ -1,0 +1,53 @@
+<div class="my-section">
+	<div class="my-content">
+		<md-content class="md-padding">
+			<md-toolbar class="md-primary " >
+					<div class="md-toolbar-tools">
+						<h2 class="md-flex">REVISOR Uno</h2>
+						<md-icon md-svg-src="../resources/img/menu/hechas.svg"></md-icon>
+						<span flex></span>						
+					</div>
+					</md-toolbar>
+										
+					<md-content style="padding:8px" ng-init="listarRevisor()">
+						<mi-tabla fila-pagina="10" mi-lista="listaRevisor" height="560px" filtrar="true" layout="column">
+							<mi-tool >
+								<md-button class="md-raised md-mini md-primary" ng-click="listarRevisor()" aria-label="refrescar">
+									<md-icon md-svg-src="../resources/img/icons/refresh.svg"></md-icon>
+								</md-button>
+							</mi-tool>
+							<mi-head mi-order val="IdPre" label="IdPre" style="text-align:center;width:50px"></mi-head>
+							<mi-head mi-order val="NomUsu" label="NomUsu" style="text-align:center;width:150px"></mi-head>
+							<mi-head mi-order val="Nombres" label="Nombres" style="text-align:center;width:250px"></mi-head>
+							<mi-head mi-order val="EstRev1" label="EstRev1" style="text-align:center;width:150px"></mi-head>
+							<mi-head mi-order val="Obs" label="Obs" style="text-align:center;width:150px"></mi-head>
+							<mi-head style="text-align:center;width:113px;min-width: 113px;">acciones</mi-head>
+							
+							<mi-body style="text-align:center">{{o.IdPre}}</mi-body>
+							<mi-body style="text-align:center">{{o.NomUsu}}</mi-body>
+							<mi-body style="text-align:center">{{o.Nombres}}</mi-body>
+							<mi-body style="text-align:center">{{o.EstRev1}}</mi-body>
+							<mi-body style="text-align:center">{{o.Obs}}</mi-body>
+							
+							<mi-body style="text-align:center;padding: 0;">
+								<md-button class="md-fab button-peque md-primary" aria-label="Eat cake" ng-click="Aceptar($event,o)" title="Aceptar Pregunta" style="margin-right:0">
+									<md-icon md-svg-src="../resources/img/icons/aceptadas.svg"></md-icon>
+								</md-button>
+								<md-button class="md-fab button-peque md-primary" aria-label="Eat cake" ng-click="Rechazar($event,o)" title="Rechazar Pregunta" style="margin-right:0">
+									<md-icon md-svg-src="../resources/img/icons/rechazadas.svg"></md-icon>
+								</md-button>
+							</mi-body>
+						</mi-tabla>
+					</md-content>
+
+			
+	  </md-content>
+
+
+	</md-content>
+
+		
+	</div>
+
+	<br/>
+</div>

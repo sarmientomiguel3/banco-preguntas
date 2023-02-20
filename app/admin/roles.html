@@ -1,0 +1,89 @@
+<div class="panel-margin">
+<md-toolbar class="md-primary " style="padding:0">
+<div class="md-toolbar-tools"><h2 class="md-flex">REGISTRO DE ROLES</h2>
+</div>
+</md-toolbar>
+<md-content layout layout-wrap layout-xs="column" layout-padding>
+
+	<div flex="100" flex-xs="100">
+		<md-input-container class="md-block">
+			<label>Nombre del Rol</label>
+			<input type="text" ng-model="rol.Nom" />
+		</md-input-container>
+		<md-input-container class="md-block">
+			<label>Descripción</label>
+			<input type="text" ng-model="rol.Des" />
+		</md-input-container>
+		<md-content class="autocomplete" flex>
+			<md-contact-chips ng-model="listaVentanasSel" md-contacts="buscarVentanas($query)" md-contact-name="Nom"
+								md-contact-image="imagen" md-require-match="true"
+								md-highlight-flags="i" filter-selected="true" placeholder="+ Funciones"
+								md-on-add="">
+			</md-contact-chips>
+			
+			<md-list layout="row" layout-wrap>
+			  <md-list-item class="md-2-line" ng-repeat="(index, ventana) in listaVentanas"
+				  ng-if="listaVentanasSel.indexOf(ventana) < 0" flex="20" flex-xs="50">
+				<img ng-src="{{ventana.imagen}}" class="md-avatar" alt="{{ventana.Nom}}" />
+				<div class="md-list-item-text compact">
+				  <h3>{{ventana.Nom}}</h3>
+				</div>
+			  </md-list-item>
+			  <md-list-item class="md-2-line " style="opacity: 0.5;" ng-repeat="(index, ventana) in listaVentanasSel" flex="20" flex-xs="50">
+				<img ng-src="{{ventana.imagen}}" class="md-avatar" alt="{{ventana.Nom}}" />
+				<div class="md-list-item-text compact">
+				  <h3>{{ventana.Nom}}</h3>
+				</div>
+			  </md-list-item>
+			</md-list>
+		</md-content>
+	</div>
+	
+	<div flex="100" >
+		<md-button class="md-raised md-primary" ng-click="registrarRol()">Registrar</md-button>
+	</div>
+
+</md-content>
+</div>
+
+<div class="panel-margin">
+	<md-toolbar class="md-primary " style="padding:0">
+	<div class="md-toolbar-tools">
+		<h2 class="md-flex">LISTA DE ROLES</h2>
+		<span flex></span>
+		<md-button class="md-raised md-primary" ng-click="listarRoles()">Listar</md-button>
+	</div>
+	</md-toolbar>
+	<md-content layout layout-xs="column" layout-padding>
+	
+	
+	<table style="width:100%" data-ng-init="listarRoles()" class="table table-hover table-striped table-mc-cyan">
+		<thead>
+			<tr>
+				<th style="text-align:center">Nombre</th>
+				<th style="text-align:center;width:40%">Descripcion</th>
+				<th style="text-align:center;width:40%">Lista de funciones</th>
+				<th style="text-align:center;width:80px">acciones</th>
+			</tr>
+		</thead>
+		<tbody >
+			<tr ng-repeat="r in listaRoles">
+				<td style="text-align:center">{{r.Nom}}</td>
+				<td >{{r.Des}}</td>
+				<td >{{r.LisVen}}</td>			
+				<td style="text-align:center;padding: 0;">
+				<md-button class="md-fab button-peque md-primary" aria-label="Eat cake" ng-disabled="r.RolID<2" ng-click="prepararEditar($event,r)" style="margin-right:0">
+					<md-icon md-svg-src="../resources/img/icons/editar.svg"></md-icon>
+				</md-button>
+				<md-button class="md-fab button-peque" aria-label="Use Android" ng-disabled="r.RolID<2" ng-click="eliminarRol($event,$index,r)" style="margin-left:0">
+					<md-icon md-svg-src="../resources/img/icons/eliminar.svg"></md-icon>
+				</md-button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	
+	</md-content>
+</div>
+	

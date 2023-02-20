@@ -1,0 +1,155 @@
+<md-toolbar class="md-primary " style="padding:0">
+<div class="md-toolbar-tools"><h2 class="md-flex">REGISTRO DE TRABAJADORES</h2>
+</div>
+</md-toolbar>
+<md-content layout-xs="column" layout="column" style="padding:24px 8px">
+
+    <fieldset class="mi-fieldset"><legend >Informacion Personal.</legend></fieldset>
+    <div layout layout-xs="column" >
+        <md-input-container flex="33" flex-xs="100">
+          <label>Documento de identidad (dni)</label>
+          <input type="text" md-maxlength="8" ng-model="persona.dni" />
+        </md-input-container>
+        <md-input-container flex>
+          <label>Nombre(s)</label>
+          <input type="text" md-maxlength="64" ng-model="persona.Nom" />
+        </md-input-container>
+    </div>
+    <div layout layout-xs="column">
+        <md-input-container flex>
+          <label>Primer Apellido</label>
+          <input type="text" md-maxlength="32" ng-model="persona.PriApe" />
+        </md-input-container>
+        <md-input-container flex>
+          <label>Segundo Apellido</label>
+          <input type="text" md-maxlength="32" ng-model="persona.SegApe" />
+        </md-input-container>
+    </div>
+    <div layout layout-xs="column" >
+        <md-input-container flex>
+          <label>Fecha Nacimiento</label>
+          <input type="date" ng-model="persona.FecNac" />
+        </md-input-container>
+        <md-input-container class="flex md-input-focused">
+            <label style="color: rgba(0,0,0,0.54)">Sexo</label>
+            <md-radio-group ng-model="persona.SexId" style="display:flex">
+                <md-radio-button value="F" style="margin: 5px; 10px ">Femenino</md-radio-button>
+                <md-radio-button value="M" style="margin: 5px; 10px" class="md-primary">Masculino</md-radio-button>
+            </md-radio-group>
+        </md-input-container>
+        <md-input-container class="flex md-input-focused">
+            <label style="color: rgba(0,0,0,0.54)">Estado Civil</label>
+            <md-radio-group ng-model="persona.EstCivID" style="display:flex">
+                <md-radio-button value="1" style="margin: 5px; 10px">Soltero</md-radio-button>
+                <md-radio-button value="2" style="margin: 5px; 10px">Casado</md-radio-button>
+                <md-radio-button value="3" style="margin: 5px; 10px">Divorciado</md-radio-button>
+            </md-radio-group>
+        </md-input-container>
+    </div>
+    <div layout layout-xs="column" >
+        <md-input-container flex>
+          <label>Numero celular</label>
+          <input type="text" ng-model="persona.Tel" />
+        </md-input-container>
+        <md-input-container flex>
+          <label>Correo Electronico</label>
+          <input type="text" ng-model="persona.Ema" />
+        </md-input-container>
+    </div>
+    <div layout layout-xs="column" >
+        <md-input-container flex>
+            <label>Pais</label>
+            <md-select ng-model="persona.PaiID">
+                <md-option ng-repeat="pais in paises" ng-value="pais.PaiID">
+                {{pais.Nom}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container flex>
+          <label>Ciudad o Provincia</label>
+          <input type="text" ng-model="persona.CiuPro" />
+        </md-input-container>
+    </div>
+    <div layout layout-xs="column" >
+        <md-input-container flex>
+          <label>Direccion de recidencia actual (opcional)</label>
+          <input type="text" ng-model="persona.DirAct" />
+        </md-input-container>
+    </div>
+    <fieldset class="mi-fieldset"><legend >Informacion de Usuario.</legend></fieldset>
+    <div layout layout-xs="column" flex="100" flex-xs="100" >
+		<md-input-container flex>
+			<label>Rol</label>
+			<md-select ng-model="usu.RolID" ng-change="elegirEstablecimientos()">
+				<md-option ng-repeat="r in listaRoles" ng-value="r">
+				{{r.Nom}}
+				</md-option>
+			</md-select>
+		</md-input-container>
+		<md-input-container flex>
+			<label>Establecimientos</label>
+			<md-select ng-model="usu.EstID" ng-disabled="establecimientosSel.length==0">
+				<md-option ng-repeat="e in establecimientosSel" ng-value="e.EstID" >
+				{{e.Nom}}
+				</md-option>
+			</md-select>
+		</md-input-container>
+	</div>
+	<div layout layout-xs="column" flex="100" >
+		<md-input-container flex >
+			<label>Nombre de Usuario</label>
+			<input type="text" ng-model="usu.NomUsu" />
+			
+		</md-input-container>
+		<md-input-container flex >
+			<label>Password</label>
+			<input type="password" ng-model="usu.Pas" />
+		</md-input-container>
+        <md-input-container flex>
+			<label>Repita Contraseña</label>
+			<input type="password" md-maxlength="16" ng-model="confirmacionPas" />
+		</md-input-container>
+	</div>
+	<div layout layout-align="center center" flex class="layout-padding3" >
+		<md-button class="md-raised md-primary" ng-click="registrarUsu()" >Registrar</md-button>
+	</div>
+
+</md-content><br/>
+
+<md-toolbar class="md-primary" >
+<div class="md-toolbar-tools">
+	<h2 class="md-flex">LISTA DE TRABAJADORES</h2>
+	<span flex></span>
+</div>
+</md-toolbar>
+<md-content layout="column" style="padding:8px" ng-init="listarUsuarios()">
+
+    <mi-tabla fila-pagina="10" filtrar="true" mi-lista="listaUsuarios" height="560px" layout="column">
+        <mi-tool >
+            <md-button class="md-raised md-primary md-mini" ng-click="listarUsuarios()" aria-label="refrescar">
+                <md-icon md-svg-src="../resources/img/icons/refresh.svg"></md-icon>
+            </md-button>
+        </mi-tool>
+        <mi-head mi-order val="NomUsu" label="Nombre de Usuario" style="text-align:center;width:auto"></mi-head>
+        <mi-head style="text-align:center;width:250px;min-width: 250px;">Contraseña</mi-head>
+        <mi-head mi-order val="rol" label="Rol" style="text-align:center;width:150px"></mi-head>
+        <mi-head mi-order val="EstReg" label="Estado" style="text-align:center;width:150px"></mi-head>
+        <mi-head style="text-align:center;width:113px;min-width: 113px;">acciones</mi-head>
+        
+        <mi-body style="text-align:center">{{o.NomUsu}}</mi-body>
+        <mi-body style="text-align:center">{{o.Pas}}</mi-body>
+        <mi-body style="text-align:center">{{o.rol}}</mi-body>
+        <mi-body style="text-align:center">{{o.EstReg}}</mi-body>
+        <mi-body style="text-align:center;padding: 0;">
+        
+            <md-button class="md-fab button-peque md-primary" aria-label="Eat cake" ng-click="prepararEditar($event,o)" style="margin-right:0">
+				<md-icon md-svg-src="../resources/img/icons/editar.svg"></md-icon>
+			</md-button>
+			<md-button class="md-fab button-peque" aria-label="Use Android" ng-click="eliminarUsu($event,$index,o)" style="margin-left:0">
+				<md-icon md-svg-src="../resources/img/icons/eliminar.svg"></md-icon>
+			</md-button>
+            
+        </mi-body>
+    </mi-tabla>
+</md-content>
+	

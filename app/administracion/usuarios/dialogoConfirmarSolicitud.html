@@ -1,0 +1,52 @@
+<md-dialog aria-label="Ubicar Cantidad" style="width:500px">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Confirmacion de Registro</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancelar()">
+          <md-icon md-svg-src="../resources/img/icons/cerrar.svg" aria-label="cerrar dialogo"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:900px;max-height:810px; ">
+      <div class="md-dialog-content" >
+      
+        <div style="display:inline-block;background: #9bf0fb;text-align: justify;">
+            <p style="line-height: 20px;padding: 0 16px;"><strong>{{datosSel.Nom}} {{datosSel.PriApe}} {{datosSel.SegApe}}</strong>, esta solicitando unirse a la familia Taured, su pack de inscripcion es: 
+            <strong>{{datosSel.producto}}</strong>, confirme su registro seleccionando la ubicacion del pack, que se le entregara al solicitante</p>
+        </div>
+        
+        <md-radio-group ng-model="EstSel">
+    
+		<table style="width:100%;padding-bottom: 0;" class="table table-striped ">
+			<thead>
+				<tr>
+                    <th style="text-align:center;width:10px"></th>
+					<th style="text-align:center">Establecimiento</th>
+					<th style="text-align:center">Cantidad</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="u in ubicaciones">
+                    <td style="text-align:center"><md-radio-button value="{{u.EstID}}" class="md-primary" style="margin-bottom: 0px;" aria-label="establecimiento"></md-radio-button></td>
+					<td style="text-align:center">{{u.Nom}}</td>
+					<td style="text-align:center">{{u.Can}}</td>
+				</tr>
+			</tbody>
+		</table>
+        </md-radio-group>
+      </div>
+    </md-dialog-content>
+	
+	<md-dialog-actions layout="row">
+		<md-button class="md-raised md-warn" ng-click="cancelar()" >
+          Cancelar
+		</md-button>
+        <md-button class="md-raised md-primary" ng-disabled="!EstSel" ng-click="aceptarSolicitud()" title="confirmar registro" style="margin-right:20px;" >
+		  Confirmar Registro
+		</md-button>
+	</md-dialog-actions>
+  </form>
+</md-dialog>
+

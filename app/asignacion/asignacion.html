@@ -1,0 +1,68 @@
+<md-toolbar class="md-primary " style="padding:0">
+  <div class="md-toolbar-tools">
+    <h2 class="md-flex">ASIGNACION DE AREA Y REVISOR</h2>
+  </div>
+</md-toolbar>
+
+<md-content layout layout-wrap layout-xs="column" layout-padding >
+  <div flex="40" flex-xs="100">
+    <md-input-container class="md-block" data-ng-init="listarAreasSujeridas()">
+      <label>Area Sujerida</label>
+      <md-select ng-model="pregunta.areaSujerida" >
+        <md-option ng-value="null" >
+        </md-option>
+        <md-option ng-repeat="itemAreaSujerida in listaAreasSujeridas" ng-value="itemAreaSujerida.id">
+          {{itemAreaSujerida.des}}
+        </md-option>
+      </md-select>
+    </md-input-container>
+  </div>
+  <div flex="40" flex-xs="100">
+    <md-input-container class="md-block" data-ng-init="listarTemas()">
+      <label>Revisor Sujerido</label>
+      <md-select ng-model="pregunta.tema">
+        <md-option ng-value="null" >
+        </md-option>
+        <md-option ng-repeat="itemTema in listaTemas" ng-value="itemTema.id">
+          {{itemTema.des}}
+        </md-option>
+      </md-select>
+    </md-input-container>
+  </div>
+</md-content>
+
+<md-content layout layout-wrap layout-xs="column" layout-padding>
+  <div flex="100" flex-xs="100" >
+    <div >
+
+      <md-toolbar class="md-theme-light">
+        <h2 class="md-toolbar-tools">
+          <span>Preguntas a asignar</span>
+        </h2>
+      </md-toolbar>
+
+      <md-content>
+        <md-list>
+          <md-list-item class="md-3-line" ng-repeat="(key, item) in pregunta.alternativa" ng-click="EditarAlternativa($event,pregunta.alternativa,key)">
+            <div class="md-list-item-text" >
+              <small ng-if="!item.descripcionPregunta">
+                Pregunta a asignar
+              </small>
+              <span id="tempid"
+              contenteditable="true"
+              ng-model="item.descripcionPregunta">
+            </span>
+          </div>
+          <md-checkbox ng-model="item.tipoAlternativa" ng-change="aceptarUno(pregunta.alternativa,key)"></md-checkbox>
+          <md-divider ng-if="!$last"></md-divider>
+        </md-list-item>
+      </md-list>
+    </md-content>
+
+  </div>
+</div>
+<div flex="100" align="center">
+  <md-button class="md-raised md-primary" ng-click="registrarPregunta()">Registrar</md-button>
+</div>
+
+</md-content>

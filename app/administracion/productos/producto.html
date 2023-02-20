@@ -1,0 +1,180 @@
+<md-toolbar class="md-primary " style="padding:0">
+<div class="md-toolbar-tools"><h2 class="md-flex">REGISTRO DE PRODUCTOS</h2>
+</div>
+</md-toolbar>
+<md-content style="padding-top:24px" >
+<div layout layout-xs="column" layout-margin>
+	<div flex="66" flex-xs="100" >		
+		<div layout >
+			<md-input-container flex>
+				<label>Categoria</label>
+				<md-select ng-model="producto.CatID" ng-change="elegirCategoria(producto.CatID)">
+					<md-option ng-repeat="categoria in listaCategorias" value="{{categoria.CatID}}">
+					{{categoria.Nom}}
+					</md-option>
+				</md-select>
+			</md-input-container>
+		</div>
+		<div layout >
+			<md-input-container flex="20">
+			  <label>Codigo </label>
+			  <input type="text" ng-model="producto.Cod" md-maxlength="8" disabled/>
+			</md-input-container>
+			<md-input-container flex="80">
+			  <label>Nombre del producto</label>
+			  <input type="text" ng-model="producto.Nom" md-maxlength="64"/>
+			</md-input-container>
+		</div>
+        <div layout layout-xs="column" ng-show="producto.CatID==1">        
+            <md-content flex style="padding-bottom: 3px;">
+            <md-chips ng-model="productosSel" readonly="false" md-item-text="Nom"
+                md-removable="true" md-max-chips="10" md-autocomplete-snap >
+                <md-autocomplete
+                  md-no-cache="false"
+                  md-search-text="palabraBusqueda"
+                  md-items="item in busquedaProducto(palabraBusqueda)"
+                  md-item-text="item.Nom"
+                  md-min-length="0"
+                  md-floating-label="Producto">
+                  
+                <md-item-template>
+                <table style="width:100%" >
+                <tr>
+                    <td style="width:70px">
+                      <img ng-src="../archivos/mini_{{item.Img}}" style="max-height:40px"></img>
+                    </td>
+                    <td style="padding:0">
+                      <span class="item-title">
+                        <span> {{item.Nom}}</span>
+                      </span>
+                    </td>
+                </tr>
+                </table>
+                </md-item-template>
+                <md-not-found>
+                  El pack "{{palabraBusqueda}}" no se puede encontrar.
+                </md-not-found>
+                </md-autocomplete>
+                <md-chip-template>
+                  <strong>{{$chip.Nom}}</strong>
+                </md-chip-template>
+            </md-chips>
+            </md-content>
+		</div>
+		<div layout layout-xs="column" ng-show="producto.CatID!=1">
+			<md-input-container flex>
+			  <label>Descripcion del producto</label>
+			  <input type="text" md-maxlength="255" ng-model="producto.Des" />
+			</md-input-container>
+		</div>
+		<div layout layout-gt-sm="row" >
+			<md-input-container class="md-block" flex>
+			  <label>Cantidad</label>
+			  <input ng-model="producto.Can" style="color:rgba(0,0,0,0.87)" disabled/>
+			</md-input-container>
+			<md-input-container class="md-block" flex>
+				<label>Unidad Medida</label>
+				<md-select ng-model="producto.UniMedID">
+					<md-option ng-repeat="unidad in listaUnidades" ng-value="unidad.UniMedID">
+					{{unidad.Nom}}
+					</md-option>
+				</md-select>
+			</md-input-container>
+			<div class="md-block" flex>
+			<md-button class="md-raised b-icon" ng-click="" title="ubicar cantidad" style="width:calc(100% - 8px);">
+				<md-icon md-svg-src="../resources/img/icons/ubicar.svg" ></md-icon>
+				ubicar cantidad
+			</md-button>			
+			</div>
+		</div>
+		<div layout layout-gt-sm="row">
+			<md-input-container flex>
+			  <label>Precio Compra</label>
+			  <input ng-model="producto.PreCom" />
+			</md-input-container>
+			<md-input-container flex>
+				<label>Moneda</label>
+				<md-select ng-model="producto.MonID">
+					<md-option ng-repeat="moneda in listaMonedas" value="{{moneda.MonID}}">
+					{{moneda.Nom}}
+					</md-option>
+				</md-select>
+			</md-input-container>
+		</div>
+        <div layout layout-gt-sm="row">
+		<md-input-container flex class=" md-input-focused" style="width:50%">
+		  <label style="color: rgba(0,0,0,0.54)">Producto para Venta individual</label>
+		  <md-radio-group ng-model="producto.EstReg" style="display:flex">
+			<md-radio-button value="A" style="margin: 5px; 10px" class="md-primary">Si</md-radio-button>
+			<md-radio-button value="I" style="margin: 5px; 10px" >No</md-radio-button>
+		  </md-radio-group>
+		</md-input-container>
+        </div>
+	</div>
+	<div id="imagenes" layout="row" flex="33" flex-xs="100" style="padding:0">
+        <div flex="60" class="mi-img" align="center" style="height: 300px;">
+            <input-file archivo="imagen" nombre="producto.Img" label="-1"></input-file>
+        </div>
+        <div layout="column" flex>
+            <div class="mi-img" align="center" style="height: 150px;">
+                <input-file archivo="imagen2" nombre="producto.Img2" label="-2"></input-file>
+            </div>
+            <div class="mi-img" align="center" style="height: 150px;">
+                <input-file archivo="imagen3" nombre="producto.Img3" label="-3"></input-file>
+            </div>
+        </div>		
+	</div>	
+</div>
+<div layout layout-xs="column" layout-margin >
+    <md-button class="md-raised md-primary" style="margin: auto" ng-click="registrarProducto()">Registrar Producto</md-button>		
+</div>
+
+</md-content><br/>
+
+<md-toolbar class="md-primary " style="padding:0">
+<div class="md-toolbar-tools">
+    <h2 class="md-flex">LISTA DE PRODUCTOS</h2>
+</div>
+</md-toolbar>
+<md-content style="padding:8px" ng-init="listarProductos()">
+    <mi-tabla fila-pagina="10" mi-lista="listaProductos" height="560px" filtrar="true" layout="column">
+        <mi-tool >
+            <md-button class="md-raised md-mini md-primary" ng-click="listarProductos()" aria-label="refrescar">
+                <md-icon md-svg-src="../resources/img/icons/refresh.svg"></md-icon>
+            </md-button>
+        </mi-tool>
+        <mi-head mi-order val="Cod" label="Codigo" style="text-align:center;width:150px"></mi-head>
+        <mi-head mi-order val="Nom" label="Nombre" style="text-align:center;width:250px"></mi-head>
+        <mi-head style="width:auto;min-width: 250px;">Descripcion</mi-head>
+        <mi-head mi-order val="Can" label="Cantidad" style="text-align:center;width:150px"></mi-head>
+        <mi-head mi-order val="PreCom" label="P. Compra" style="text-align:center;width:150px"></mi-head>
+        <mi-head style="text-align:center;width:150px">Imagen</mi-head>
+        <mi-head style="text-align:center;width:113px;min-width: 113px;">acciones</mi-head>
+        
+        <mi-body style="text-align:center">{{o.Cod}}</mi-body>
+        <mi-body style="text-align:center">{{o.Nom}}</mi-body>
+        <mi-body >{{o.Des}}</mi-body>
+        <mi-body style="text-align:center">{{o.Can}} {{o.unid}}</mi-body>
+        <mi-body style="text-align:center">{{o.PreCom}} {{o.mone}}</mi-body>
+        <mi-body style="text-align:center;padding: 0;">
+            <img ng-src="../archivos/mini_{{o.Img}}" class="face2" alt="">
+        </mi-body>
+        <mi-body style="text-align:center;padding: 0;">
+            <md-button class="md-fab md-primary button-peque" aria-label="ver" ng-click="prepararUbicar($event,o)" title="ver ubicacion" style="margin:0">
+                <md-icon md-svg-src="../resources/img/icons/ver.svg"></md-icon>
+            </md-button>
+            <md-button class="md-fab md-primary button-peque" aria-label="editar" ng-click="prepararEditar($event,o)" title="editar" style="margin:0;">
+                <md-icon md-svg-src="../resources/img/icons/editar.svg"></md-icon>
+            </md-button>
+            <md-button class="md-fab button-peque" aria-label="eliminar" ng-click="eliminarProducto($event,$index,o)" title="eliminar" style="margin:0">
+                <md-icon md-svg-src="../resources/img/icons/eliminar.svg"></md-icon>
+            </md-button>
+        </mi-body>
+    </mi-tabla>
+</md-content>
+
+
+
+
+	
+	

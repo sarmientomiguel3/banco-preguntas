@@ -1,0 +1,285 @@
+<md-toolbar class="md-primary " style="padding:0">
+	<div class="md-toolbar-tools"><h2 class="md-flex">REGISTRO DE PREGUNTAS</h2>
+	</div>
+	</md-toolbar>
+
+	
+	<md-content layout layout-wrap layout-xs="column" layout-padding>
+	
+		<div flex="95" flex-xs="100" >
+
+			<div layout-gt-sm="row" >
+				<md-input-container class="md-block" flex-gt-sm>
+				<label>Formulador</label>
+				<input type="text" ng-model="pregunta.formulador" />
+				</md-input-container>
+				<md-input-container class="md-block" flex-gt-sm>
+				<label>Proceso</label>
+				<input type="text" ng-model="pregunta.proceso" />
+				</md-input-container>
+				<md-input-container class="md-block" flex-gt-sm>
+				<label>Fase</label>
+				<input type="text" ng-model="pregunta.fase" />
+				</md-input-container>
+			</div>
+
+
+			<div layout-gt-xs="row">
+
+
+					<md-input-container class="md-block" flex-gt-xs="" data-ng-init="listarTablas()">
+							<label>Curso</label>
+							<md-select ng-model="pregunta.curso">
+								  <md-option ng-value="null" >Cursos</md-option>
+								  <md-option ng-repeat="curso in listaCursos" ng-value="curso.IdCur">
+								  {{curso.NomCur}}
+								  </md-option>
+						  </md-select>
+					</md-input-container>
+
+		  
+					<md-input-container>
+					  <label>Ingresa Fecha</label>
+					  <md-datepicker ng-model="pregunta.fecha" placeholder="Some Date"></md-datepicker>
+					</md-input-container>
+				  </div>
+
+			
+
+
+
+			<div ng-cloak="" class="tabsdemoDynamicHeight" >
+					<md-content>
+					  <md-tabs md-dynamic-height="" md-border-bottom="" md-center-tabs>
+						<md-tab label="ceprunsa">
+						  <md-content class="md-padding">
+
+								<div layout="column" layout-gt-sm="row">
+										<div flex-gt-sm="33">
+												<label>Area</label><br><br><br>
+												<md-radio-group ng-model="pregunta.area">
+
+														<md-radio-button value=1 class="md-primary">Biomedicas</md-radio-button>
+														<md-radio-button value=2> Ingenierias </md-radio-button>
+														<md-radio-button value=3>Sociales</md-radio-button>
+												  
+												</md-radio-group>
+										</div>
+										<div flex-gt-sm="66">
+												<div layout="column" >
+														<md-input-container class="md-block" flex="">
+															<label>Nombre Pregunta</label>
+															<input type="text" ng-model="pregunta.nomPre" />
+														</md-input-container>
+		
+														<md-input-container class="md-block" flex="">
+															<label>Titulo de Balota</label>
+															<input type="text" ng-model="pregunta.titBal" />
+														</md-input-container>
+		
+														<md-input-container class="md-block" flex="">
+															<label>Tema Especifico</label>
+															<input type="text" ng-model="pregunta.temEsp" />
+														</md-input-container>
+													</div>
+										</div>
+								
+
+									  </div>
+
+									  <div layout="column" layout-gt-sm="row">
+											<div flex-gt-sm="33">
+													<label>Dificultad</label><br><br><br>
+													<md-radio-group ng-model="pregunta.dificultad">
+	
+															<md-radio-button value=1 class="md-primary">Facil</md-radio-button>
+															<md-radio-button value=2> Media </md-radio-button>
+															<md-radio-button value=3>Dificil</md-radio-button>
+													  
+													</md-radio-group>
+											</div>
+											<div flex-gt-sm="66">
+													<div layout="column" >
+															<md-input-container class="md-block" flex="">
+																<label>Texto</label>
+																<input type="text" ng-model="pregunta.txtPre" />
+															</md-input-container>
+			
+															<md-input-container class="md-block" flex="">
+																<label>Tomo</label>
+																<input type="text" ng-model="pregunta.tomo" />
+															</md-input-container>
+			
+															<md-input-container class="md-block" flex="">
+																<label>Pagina</label>
+																<input type="text" ng-model="pregunta.pagina" />
+															</md-input-container>
+														</div>
+											</div>
+									
+	
+										  </div>
+
+
+
+									<div layout="column" layout-xs="column" layout-padding="" layout-align="center center" >
+											<label>Sugerencia al Area del Destinos</label>
+												<md-radio-group ng-model="pregunta.areasug" layout="row">
+													
+														<md-radio-button ng-repeat="asug in listaAreaSug" ng-value="asug.IdAreSug">{{asug.DesAreSug}}</md-radio-button>
+
+												  
+												</md-radio-group>
+									</div>
+
+
+
+
+						  </md-content>
+						</md-tab>
+						<md-tab label="ordinario">
+						  <md-content class="md-padding">
+
+
+
+								<div  ng-cloak="" class="gridListdemoBasicUsage" >
+										<md-grid-list md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6" md-row-height-gt-md="1:1" md-row-height="2:2" md-gutter="12px" md-gutter-gt-sm="8px">
+									  
+										  <md-grid-tile class="gray" md-rowspan="1" md-colspan="2" md-colspan-sm="1" md-colspan-xs="1">
+											
+										  </md-grid-tile>
+									  
+										  <md-grid-tile class="red" md-rowspan="1" md-colspan="4" md-colspan-sm="1" md-colspan-xs="1">
+												<md-grid-tile-footer>
+														<h3>#5: (2r x 2c)</h3>
+													  </md-grid-tile-footer>
+										  </md-grid-tile>
+									  
+
+									  
+										</md-grid-list>
+								</div>
+
+	
+						  </md-content>
+						</md-tab>
+
+					  </md-tabs>
+					</md-content>
+				  </div>
+
+			<div layout-gt-sm="row" >
+
+					
+					<md-input-container class="md-block" flex-gt-sm>
+					<label>Enunciado</label>
+					<input type="text" ng-model="pregunta.enunciado" />
+					</md-input-container>
+					
+			</div>
+
+
+
+			<div layout-xs="row">
+					<div md-dynamic-height="">
+						<div id="mostrarImagen1" class="mi-img" style="min-height: 100px"></div>
+					</div>
+					<div flex-xs="50" flex="100" align="center">
+						<md-button id="uploadButton" class="md-raised" ng-click="elegirImagen()"> Seleccionar Imagen</md-button>
+						<input type="file" id="imagen1" class="ng-hide" onchange="angular.element(this).scope().cambiarArchivo(this)"/>
+					</div>
+				</div>		
+
+
+		<div >
+			<div layout-gt-sm="row" >
+					<md-input-container class="md-block" flex-gt-sm>
+					<label>Pregunta 01</label>
+					<input type="text" ng-model="pregunta.p1" />
+					
+					</md-input-container>
+					<md-checkbox ng-model="p.r1" aria-label="Checkbox 1"></md-checkbox>
+			
+			</div>
+			<div layout-gt-sm="row" >
+					<md-input-container class="md-block" flex-gt-sm>
+					<label>Pregunta 02</label>
+					<input type="text" ng-model="pregunta.p2" />
+					
+					</md-input-container>
+					<md-checkbox ng-model="p.r2" aria-label="Checkbox 1"></md-checkbox>
+			
+			</div>
+			<div layout-gt-sm="row" >
+					<md-input-container class="md-block" flex-gt-sm>
+					<label>Pregunta 03</label>
+					<input type="text" ng-model="pregunta.p3" />
+					
+					</md-input-container>
+					<md-checkbox ng-model="p.r3" aria-label="Checkbox 1"></md-checkbox>
+			
+			</div>
+			<div layout-gt-sm="row" >
+					<md-input-container class="md-block" flex-gt-sm>
+					<label>Pregunta 04</label>
+					<input type="text" ng-model="pregunta.p4" />
+					
+					</md-input-container>
+					<md-checkbox ng-model="p.r4" aria-label="Checkbox 1"></md-checkbox>
+			
+			</div>
+			<div layout-gt-sm="row" >
+					<md-input-container class="md-block" flex-gt-sm>
+					<label>Pregunta 05</label>
+					<input type="text" ng-model="pregunta.p15" />
+					
+					</md-input-container>
+					<md-checkbox ng-model="p.r5" aria-label="Checkbox 1"></md-checkbox>
+			
+			</div>
+		</div>
+		</div>
+
+		<div flex="100" align="center">
+			<md-button class="md-raised md-primary" ng-click="registrarPregunta()">Registrar</md-button>
+		</div>
+	
+	</md-content><br/>
+	
+	<md-toolbar class="md-primary " >
+	<div class="md-toolbar-tools">
+		<h2 class="md-flex">LISTA DE PREGUNTAS</h2>
+		<span flex></span>
+		<md-button class="md-raised md-primary" ng-click="listarVentanas()">Listar</md-button>
+	</div>
+	</md-toolbar>
+	<md-content layout layout-xs="column" style="padding:8px">
+	<table style="width:100%;" data-ng-init="listarVentanas()" class="table table-hover table-striped">
+		<thead>
+			<tr>
+				<th style="text-align:center">ID</th>
+				<th style="text-align:center">Pregunta</th>
+				<th style="text-align:center;">Curso</th>
+				<th style="text-align:center">Area Sug</th>
+				<th style="text-align:center">accion</th>
+			</tr>
+		</thead>
+		<tbody >
+			<tr ng-repeat="p in listaPreguntas">
+				<td style="text-align:center">{{p.IdPre}}</td>
+				<td style="text-align:center">{{p.enunciado}}</td>
+				<td style="text-align:center;">{{p.curso}}</td>
+				<td style="text-align:center;">{{p.areasug}}</td>
+
+				<td style="text-align:center;padding: 0;width:80px">
+				<md-button class="md-fab button-peque md-primary" aria-label="Eat cake" ng-click="prepararEditar($event,v)" style="margin-right:0">
+					<md-icon md-svg-src="../resources/img/icons/editar.svg"></md-icon>
+				</md-button>
+				<md-button class="md-fab button-peque" aria-label="Use Android" ng-click="eliminarVentana($index,v)" style="margin-left:0">
+					<md-icon md-svg-src="../resources/img/icons/eliminar.svg"></md-icon>
+				</md-button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	</md-content>

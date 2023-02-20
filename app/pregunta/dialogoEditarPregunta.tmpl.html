@@ -1,0 +1,52 @@
+<md-dialog aria-label="Editar Alternativa" style="width:800px"  ng-init="ngInitData()">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Editar Rol</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancelar()">
+          <md-icon md-svg-src="../resources/img/icons/cerrar.svg" aria-label="cerrar dialogo"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:900px;max-height:810px; ">
+      <div class="md-dialog-content">
+		  <!-- <pre>{{alternativaSel|json}}</pre> -->
+        <div layout="row" >
+			<div flex="80" flex-xs="100">
+				<div layout-xs="row" style="padding-right: 10px;">
+					<math-editor  ma="ma" data="alternativaSel.DesAlt"></math-editor>
+				</div>
+			</div>
+			<div flex="20" flex-xs="100" >
+				<div layout-xs="row" >
+					<div md-dynamic-height="">
+						<div ng-if="alternativaSel.ImgAlt && !alternativaSelImagen">
+							<img style="max-height:120px;        /* for IE as it does not support min-height */display: block;margin-left: auto;margin-right: auto;max-width: 120px;" src="http://localhost:8080/BancoUnsa/resources/img/bancoPreguntaUnsa/{{alternativaSel.ImgAlt}}">	
+						</div>
+						<div ng-if="!(alternativaSel.ImgAlt && !alternativaSelImagen)">
+							<div id="mostrarImagen1" class="mi-img" style="min-height: 100px">Imagen</div>
+						</div>
+					</div>
+					<div flex-xs="50" flex="100" align="center">
+						<md-button id="uploadButtonAlternativa" class="md-raised" ng-click="elegirImagen('imagen1')"> Subir Imagen</md-button>
+						<input type="file" id="imagen1" class="ng-hide" onchange="angular.element(this).scope().cambiarArchivo(this,'mostrarImagen1')"/>
+					</div>
+				</div>	
+			</div>
+
+		</div>
+      </div>
+    </md-dialog-content>
+	
+	<md-dialog-actions layout="row">
+		<md-button class="md-raised md-warn" ng-click="cancelar()" >
+		 Cancelar
+		</md-button>
+		<md-button class="md-raised md-warn" ng-click="guardarCambios()" style="margin-right:20px;" >
+		  Guardar Cambios
+		</md-button>
+	</md-dialog-actions>
+  </form>
+</md-dialog>
+

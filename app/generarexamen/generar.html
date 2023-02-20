@@ -1,0 +1,241 @@
+<md-content>
+	<md-tabs md-dynamic-height md-border-bottom md-center-tabs>
+		<!--Generacion de Balotario  -->
+		<md-tab label="GENERACION DE BALOTARIOS">
+			<div layout-xs="column" layout layout-margin ng-init="copiarDatos(nuevoUsuario)">
+				<div flex>
+					<div layout layout-xs="column">
+						<md-input-container flex>
+							<label>Año</label>
+							<input type="number" md-maxlength="4"  min="2000"  max="2030" ng-model="nuevoUsuario.persona.dni" style="color:rgba(0,0,0,0.87)" />
+						</md-input-container>
+						<md-input-container flex>
+							<label>Fase</label>
+							<input type="text" ng-model="nuevoUsuario.persona.dni" style="color:rgba(0,0,0,0.87)" />
+						</md-input-container>
+					</div>
+					<div layout layout-xs="column">
+						<md-input-container flex>
+							<label>Tipo</label>
+							<input type="text" ng-model="nuevoUsuario.persona.dni" style="color:rgba(0,0,0,0.87)" />
+						</md-input-container>
+						<md-input-container flex>
+							<label>Tema</label>
+							<input type="text" md-maxlength="1" ng-model="nuevoUsuario.persona.dni" style="color:rgba(0,0,0,0.87)" />
+						</md-input-container>
+					</div>
+
+					<div layout layout-xs="column">
+						<md-input-container flex>
+							<label>Numero de Preguntas</label>
+							<input type="number" md-maxlength="4"  min="0"  max="100" ng-model="nuevoUsuario.persona.dni" style="color:rgba(0,0,0,0.87)" />
+						</md-input-container>
+					</div>
+					<div layout layout-xs="column">
+						<md-content flex>
+							<md-toolbar class="md-primary " >
+								<div class="md-toolbar-tools">
+									<h2 class="md-flex">LISTA DE PREGUNTAS HECHAS</h2>
+									<md-icon md-svg-src="../resources/img/menu/hechas.svg"></md-icon>
+									<span flex></span>
+								</div>
+							</md-toolbar>
+							<md-content layout layout-xs="column" style="padding:20px">
+								<table style="width:100%;" data-ng-init="listarEstadisticas()" class="table table-hover table-striped">
+									<thead>
+										<tr>
+											<th style="text-align:center">ID</th>
+											<th style="text-align:center">Docente</th>
+											<th style="text-align:center;">Pregunta</th>
+											<th style="text-align:center">Revisor1</th>
+											<th style="text-align:center">Revisor2</th>
+											<th style="text-align:center">EstadoRev1</th>
+											<th style="text-align:center">EstadoRev2</th>
+											<th style="text-align:center">Observaciones</th>
+											<th style="text-align:center">Acciones</th>
+										</tr>
+									</thead>
+									<tbody >
+										<tr ng-repeat="p in listaEstadisticas">
+											<td style="text-align:center">{{p.IdPreUsu}}</td>
+											<td style="text-align:center">{{p.IdDoc}}</td>
+											<td style="text-align:center;">{{p.IdPre}}</td>
+											<td style="text-align:center;">{{p.IdRev1}}</td>
+											<td style="text-align:center;">{{p.IdRev2}}</td>
+											<td style="text-align:center;">{{p.EstRev1}}</td>
+											<td style="text-align:center;">{{p.EstRev2}}</td>
+											<td style="text-align:center;">{{p.Obs}}</td>
+											<td style="text-align:center;padding: 0;width:80px">
+												<md-button class="md-fab button-peque md-primary" aria-label="Eat cake" ng-click="prepararEditar($event,v)" style="margin-right:0">
+													<md-icon md-svg-src="../resources/img/icons/editar.svg"></md-icon>
+												</md-button>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</md-content>
+						</md-content>
+					</div>
+					<div layout layout-xs="column">
+						<md-content flex>
+							<div align="center">
+								<md-button ng-disabled="pregunta.IdPre" class="md-raised md-primary" ng-click="registrarPregunta()">Registrar</md-button>
+								<md-button ng-disabled="!pregunta.IdPre" class="md-raised md-primary" ng-click="actualizarPregunta()">Actualizar</md-button>
+								<md-button ng-disabled="pregunta.IdPre" class="md-raised md-primary" ng-click="iniciarLimpiarData()">Limpiar</md-button>
+								<md-button ng-disabled="!pregunta.IdPre" class="md-raised md-primary" ng-click="iniciarLimpiarData()">Nuevo</md-button>
+							</div>
+						</md-content>
+					</div>
+
+				</div>
+			</div>
+		</md-tab>
+		<!--Modificacion de Balotarios  -->
+		<md-tab label="MODIFICACION DE BALOTARIOS">
+			<div layout-xs="column" layout layout-margin ng-init="copiarDatos(nuevoUsuario)">
+				<div flex>
+					<div layout layout-xs="column">
+						<md-input-container flex>
+							<label>Codigo</label>
+							<input type="text" ng-model="nuevoUsuario.persona.dni" style="color:rgba(0,0,0,0.87)" />
+						</md-input-container>
+						<md-button ng-disabled="pregunta.IdPre" class="md-raised md-primary" ng-click="registrarPregunta()">
+							BUSCAR
+						</md-button>
+					</div>
+					<div layout layout-xs="column">
+						<md-input-container flex>
+							<label>Año</label>
+							<input type="number" md-maxlength="4"  min="2000"  max="2030" ng-model="nuevoUsuario.persona.dni" style="color:rgba(0,0,0,0.87)" />
+						</md-input-container>
+						<md-input-container flex>
+							<label>Fase</label>
+							<input type="text" ng-model="nuevoUsuario.persona.dni" style="color:rgba(0,0,0,0.87)" />
+						</md-input-container>
+						<md-input-container flex>
+							<label>Tipo</label>
+							<input type="text" ng-model="nuevoUsuario.persona.dni" style="color:rgba(0,0,0,0.87)" />
+						</md-input-container>
+						<md-input-container flex>
+							<label>Tema</label>
+							<input type="text" md-maxlength="1" ng-model="nuevoUsuario.persona.dni" style="color:rgba(0,0,0,0.87)" />
+						</md-input-container>
+					</div>
+
+					<div layout layout-xs="column">
+						<md-content flex>
+							<md-toolbar class="md-primary " >
+								<div class="md-toolbar-tools">
+									<h2 class="md-flex">LISTA DE PREGUNTAS</h2>
+									<md-icon md-svg-src="../resources/img/menu/hechas.svg"></md-icon>
+									<span flex></span>
+								</div>
+							</md-toolbar>
+							<md-content layout layout-xs="column" style="padding:20px">
+								<table style="width:100%;" data-ng-init="listarEstadisticas()" class="table table-hover table-striped">
+									<thead>
+										<tr>
+											<th style="text-align:center">ID</th>
+											<th style="text-align:center">Docente</th>
+											<th style="text-align:center;">Pregunta</th>
+											<th style="text-align:center">Revisor1</th>
+											<th style="text-align:center">Revisor2</th>
+											<th style="text-align:center">EstadoRev1</th>
+											<th style="text-align:center">EstadoRev2</th>
+											<th style="text-align:center">Observaciones</th>
+											<th style="text-align:center">Acciones</th>
+										</tr>
+									</thead>
+									<tbody >
+										<tr ng-repeat="p in listaEstadisticas">
+											<td style="text-align:center">{{p.IdPreUsu}}</td>
+											<td style="text-align:center">{{p.IdDoc}}</td>
+											<td style="text-align:center;">{{p.IdPre}}</td>
+											<td style="text-align:center;">{{p.IdRev1}}</td>
+											<td style="text-align:center;">{{p.IdRev2}}</td>
+											<td style="text-align:center;">{{p.EstRev1}}</td>
+											<td style="text-align:center;">{{p.EstRev2}}</td>
+											<td style="text-align:center;">{{p.Obs}}</td>
+											<td style="text-align:center;padding: 0;width:80px">
+												<md-button class="md-fab button-peque md-primary" aria-label="Eat cake" ng-click="prepararEditar($event,v)" style="margin-right:0">
+													<md-icon md-svg-src="../resources/img/icons/editar.svg"></md-icon>
+												</md-button>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</md-content>
+						</md-content>
+					</div>
+					<div layout layout-xs="column">
+						<md-content flex>
+							<div align="center">
+								<md-button ng-disabled="!pregunta.IdPre" class="md-raised md-primary" ng-click="actualizarPregunta()">Actualizar</md-button>
+							</div>
+						</md-content>
+					</div>
+
+				</div>
+			</div>
+		</md-tab>
+		<!--Impresion de Balotarios  -->
+		<md-tab label="IMPRESION DE BALOTARIOS">
+			<div layout-xs="column" layout layout-margin ng-init="copiarDatos(nuevoUsuario)">
+				<div flex>
+					<div layout layout-xs="column">
+						<md-content flex>
+							<md-toolbar class="md-primary " >
+								<div class="md-toolbar-tools">
+									<h2 class="md-flex">EXAMENES</h2>
+									<md-icon md-svg-src="../resources/img/menu/hechas.svg"></md-icon>
+									<span flex></span>
+								</div>
+							</md-toolbar>
+							<md-content layout layout-xs="column" style="padding:20px">
+								<table style="width:100%;" data-ng-init="listarEstadisticas()" class="table table-hover table-striped">
+									<thead>
+										<tr>
+											<th style="text-align:center">ID</th>
+											<th style="text-align:center">Docente</th>
+											<th style="text-align:center;">Pregunta</th>
+											<th style="text-align:center">Revisor1</th>
+											<th style="text-align:center">Revisor2</th>
+											<th style="text-align:center">EstadoRev1</th>
+											<th style="text-align:center">EstadoRev2</th>
+											<th style="text-align:center">Observaciones</th>
+											<th style="text-align:center">Acciones</th>
+										</tr>
+									</thead>
+									<tbody >
+										<tr ng-repeat="p in listaEstadisticas">
+											<td style="text-align:center">{{p.IdPreUsu}}</td>
+											<td style="text-align:center">{{p.IdDoc}}</td>
+											<td style="text-align:center;">{{p.IdPre}}</td>
+											<td style="text-align:center;">{{p.IdRev1}}</td>
+											<td style="text-align:center;">{{p.IdRev2}}</td>
+											<td style="text-align:center;">{{p.EstRev1}}</td>
+											<td style="text-align:center;">{{p.EstRev2}}</td>
+											<td style="text-align:center;">{{p.Obs}}</td>
+											<td style="text-align:center;padding: 0;width:80px">
+												<md-button class="md-fab button-peque md-primary" aria-label="Eat cake" ng-click="prepararEditar($event,v)" style="margin-right:0">
+													<md-icon md-svg-src="../resources/img/icons/editar.svg"></md-icon>
+												</md-button>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</md-content>
+						</md-content>
+					</div>
+					<div layout layout-xs="column">
+						<md-content flex>
+							<div align="center">
+								<md-button ng-disabled="pregunta.IdPre" class="md-raised md-primary" ng-click="registrarPregunta()">DESCARGAR</md-button>
+							</div>
+						</md-content>
+					</div>
+				</div>
+			</div>
+		</md-tab>
+	</md-tabs>
+</md-content>

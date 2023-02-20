@@ -1,0 +1,231 @@
+<md-toolbar class="md-primary " style="padding:0">
+<div class="md-toolbar-tools"><h2 class="md-flex">REGISTRO DE PREGUNTAS</h2>
+</div>
+</md-toolbar>
+
+<md-content ng-if="pregunta.IdPre" layout layout-wrap layout-xs="column" layout-padding >
+		<md-chips>
+				<md-chip>Pregunta ID : {{pregunta.IdPre}}</md-chip>
+			  </md-chips>
+</md-content>
+<md-content layout layout-wrap layout-xs="column" layout-padding >
+	<div flex="30" flex-xs="100">
+		<md-input-container class="md-block" data-ng-init="listarCursos()">
+			<label>Curso</label>
+			<md-select ng-model="pregunta.fkIdCur" required ng-disabled="pregunta.IdPre">
+				<!-- <md-option ng-value="null" ></md-option> -->
+				<md-option ng-repeat="itemCurso in listaCursos" ng-value="itemCurso.IdCur">
+				{{itemCurso.NomCur}}
+				</md-option>
+			</md-select>
+		</md-input-container>
+	</div>
+	<div flex="30" flex-xs="100">
+		<md-input-container class="md-block" data-ng-init="listarTemas()">
+			<label>Tema</label>
+			<md-select ng-model="pregunta.fkIdTem" ng-disabled="pregunta.IdPre||(!pregunta.fkIdCur)" required>
+				<!-- <md-option ng-value="null" ></md-option> -->
+				<md-option ng-repeat="itemTema in listaTemas | filter : {'fkIdCur':pregunta.fkIdCur}" ng-value="itemTema.IdTem">
+				{{itemTema.DesTem}}
+				</md-option>
+			</md-select>
+		</md-input-container>
+	</div>
+	<div flex="40" flex-xs="100">
+		<md-input-container class="md-block" data-ng-init="listarTemasEspecificos()">
+			<label>Tema Específico</label>
+			<md-select ng-model="pregunta.fkIdTemEsp" ng-disabled="pregunta.IdPre|| !pregunta.fkIdTem || !pregunta.fkIdCur" required>
+				<!-- <md-option ng-value="null" ></md-option> -->
+				<md-option ng-repeat="itemTema in listaTemasEspe | filter : {'fkIdTem':pregunta.fkIdTem}" ng-value="itemTema.IdTemEsp">
+				{{itemTema.DesTemEsp}}
+				</md-option>
+			</md-select>
+		</md-input-container>
+	</div>
+	<div flex="40" flex-xs="100">
+		<md-input-container class="md-block" data-ng-init="listarAreasSujeridas()">
+			<label>Area Sujerida</label>
+			<md-select ng-model="pregunta.fkIdAreSug" required>
+				<!-- <md-option ng-value="null" ></md-option> -->
+				<md-option ng-repeat="itemAreaSujerida in listaAreasSujeridas" ng-value="itemAreaSujerida.IdAreSug" ng-disabled="pregunta.IdPre">
+				{{itemAreaSujerida.DesAreSug}}
+				</md-option>
+			</md-select>
+		</md-input-container>
+	</div>
+	<!-- Listar fkIdDif -->
+	<div flex="40" flex-xs="100">
+		<md-input-container class="md-block" data-ng-init="listarDificultad()">
+			<label>Dificultad</label>
+			<md-select ng-model="pregunta.fkIdDif" required>
+				<!-- <md-option ng-value="null" ></md-option> -->
+				<md-option ng-repeat="itemDificultad in listaDificultad" ng-value="itemDificultad.IdDif" ng-disabled="pregunta.IdPre">
+				{{itemDificultad.DesDif}}
+				</md-option>
+			</md-select>
+		</md-input-container>
+	</div>
+</md-content>
+
+
+
+<md-content layout layout-wrap layout-xs="column" layout-padding>
+	<md-toolbar class="md-theme-light">
+		<h2 class="md-toolbar-tools">
+			<span>Editar su pregunta</span>
+		</h2>
+	</md-toolbar>
+	<!-- <div layout-gt-sm="row" > Editar su pregunta
+	</div> -->
+	<div flex="80" flex-xs="100">
+        <math-editor  ma="ma" data="pregunta.TxtPre" required></math-editor>
+	</div>
+	<div flex="20" flex-xs="100" >
+		<div layout-xs="row">
+			
+			<div md-dynamic-height="">
+				<div ng-if="(pregunta.ImgPre && !preguntaImagen)">
+					<img style="max-height:250px;        /* for IE as it does not support min-height */display: block;margin-left: auto;margin-right: auto;max-width: 250px;" src="http://localhost:8080/BancoUnsa/resources/img/bancoPreguntaUnsa/{{pregunta.ImgPre}}">	
+				</div>
+				<div ng-if="!(pregunta.ImgPre && !preguntaImagen)">
+					<div id="mostrarImagenPregunta" class="mi-img" style="min-height: 100px" ></div>
+				</div>
+			</div>
+			<div flex-xs="50" flex="100" align="center">
+				<md-button id="uploadButtonPregunta" class="md-raised" ng-click="elegirImagen('imagenPreguntra')"> Subir Imagen</md-button>
+				<input type="file" id="imagenPreguntra" class="ng-hide" name="hola" onchange="angular.element(this).scope().cambiarArchivoPregunta(this,'mostrarImagenPregunta')"/>
+			</div>
+		</div>
+	</div>
+	<!-- <div flex="100" align="center">
+		<md-button class="md-raised md-primary" ng-click="registrarVentana()">Registrar</md-button>
+	</div> -->
+
+</md-content>
+	<md-content layout layout-wrap layout-xs="column" layout-padding>
+		<div flex="100" flex-xs="100" >
+		<div >
+
+			<md-toolbar class="md-theme-light">
+			<h2 class="md-toolbar-tools">
+				<span>Alternativas</span>
+			</h2>
+			</md-toolbar>
+
+			<md-content>
+			<md-list>
+				<md-list-item class="md-3-line" ng-repeat="(index, item) in alternativas" ng-click="EditarAlternativa($event,index)">
+					<div class="md-list-item-text" >  
+						<small ng-if="!item.DesAlt">
+							Agrege su pregunta
+						</small>
+						<span id="tempid"
+						contenteditable="true" 
+						ng-model="item.DesAlt">
+						</span>
+					</div>
+					<md-button class="md-secondary" ng-click="EditarAlternativa($event,index)">Add</md-button>
+					<md-checkbox ng-model="item.CorAlt" ng-change="aceptarUno(alternativas,index)"></md-checkbox>
+					<md-divider ng-if="!$last"></md-divider>
+				</md-list-item>
+			</md-list>
+			</md-content>
+
+		</div>
+		</div>
+	</md-content>
+
+	
+	<md-content layout layout-wrap layout-xs="column" layout-padding >
+
+		
+			<md-toolbar class="md-theme-light">
+					<h2 class="md-toolbar-tools">
+						<span>Justificacion</span>
+					</h2>
+					</md-toolbar>
+			<div flex="70" flex-xs="100" >
+				<md-input-container class="md-block">
+					<label>Justificacion</label>
+					<textarea ng-model="justificacion.DesJus" md-maxlength="250" rows="4" md-select-on-focus ng-disabled="pregunta.IdPre"></textarea>
+				</md-input-container>
+			</div>
+			<div flex="30" flex-xs="100" >
+				<div layout-xs="row">
+					<div md-dynamic-height="">
+		
+						<div ng-if="justificacion.ImgJus && !justificacionImagen">
+							<img style="max-height:250px;        /* for IE as it does not support min-height */display: block;margin-left: auto;margin-right: auto;max-width: 250px;" src="http://localhost:8080/BancoUnsa/resources/img/bancoPreguntaUnsa/{{justificacion.ImgJus}}">	
+						</div>
+						<div ng-if="!(justificacion.ImgJus && !justificacionImagen)">
+							<div id="mostrarImagenJustificacion" class="mi-img" style="min-height: 100px" ></div>
+						</div>
+						
+		
+						<!-- <div id="mostrarImagenJustificacion" class="mi-img" style="height: 100px" ></div> -->
+					</div>
+					<div flex-xs="50" flex="100" align="center">
+						<md-button id="uploadButtonJustificacion" class="md-raised" ng-click="elegirImagen('imagenJustificacion')"> Subir Imagen</md-button>
+						<input type="file" id="imagenJustificacion" class="ng-hide" name="hola" onchange="angular.element(this).scope().cambiarArchivoJustificacion(this,'mostrarImagenJustificacion')"/>
+					</div>
+				</div>
+			</div>
+		</md-content>
+
+	
+		<md-content layout layout-wrap layout-xs="column" layout-padding >
+				<div flex="100" align="center">
+					<md-button ng-if="!pregunta.IdPre" class="md-raised md-primary" ng-click="registrarPregunta()">Registrar</md-button>
+					<md-button ng-if="pregunta.IdPre" class="md-raised md-primary" ng-click="actualizarPregunta()">Actualizar</md-button>
+					<md-button ng-if="!pregunta.IdPre" class="md-raised md-primary" ng-click="iniciarLimpiarData()">Limpiar</md-button>
+					<md-button ng-if="pregunta.IdPre" class="md-raised md-primary" ng-click="iniciarLimpiarData()">Nuevo</md-button>
+				</div>
+			</md-content>
+			<!-- 
+	<md-toolbar class="md-primary " >
+	 <div class="md-toolbar-tools" data-ng-init="listarPreguntas()">
+		<h2 class="md-flex">LISTA DE PREGUNTAS TOP 20</h2>
+		<span flex></span>
+		<md-button class="md-raised md-primary" ng-click="listarPreguntas()">Listar</md-button>
+	</div>
+	</md-toolbar>
+	<md-content layout layout-xs="column" style="padding:8px">
+	<table style="width:100%;" class="table table-hover table-striped">
+		<thead>
+			<tr>
+				<th style="text-align:center">ID</th>
+				<th style="text-align:center">Pregunta</th>
+				<th style="text-align:center;">Dificultad</th>
+				<th style="text-align:center">Area Sug</th>
+				<th style="text-align:center">Curso</th>
+				<th style="text-align:center">Tema</th>
+				<th style="text-align:center">Tema Espesifico</th>
+			</tr>
+		</thead>
+		<tbody >
+			<tr ng-repeat="p in listaPreguntas">
+				<td style="text-align:center">{{p.IdPre}}</td>
+				<td style="text-align:center">
+					<span id="tempid"
+						contenteditable="true" 
+						ng-model="p.TxtPre">
+					</span>
+				</td>
+				<td style="text-align:center;">{{p.DesDif}}</td>
+				<td style="text-align:center;">{{p.DesAreSug}}</td>
+				<td style="text-align:center;">{{p.NomCur}}</td>
+				<td style="text-align:center;">{{p.DesTem}}</td>
+				<td style="text-align:center;">{{p.DesTemEsp}}</td>
+
+				<td style="text-align:center;padding: 0;width:80px">
+				<md-button class="md-fab button-peque md-primary" aria-label="Eat cake" ng-click="prepararEditar($event,p)" style="margin-right:0">
+					<md-icon md-svg-src="../resources/img/icons/editar.svg"></md-icon>
+				</md-button>
+				<md-button class="md-fab button-peque" aria-label="Use Android" ng-click="eliminarPregunta($index,p)" style="margin-left:0">
+					<md-icon md-svg-src="../resources/img/icons/eliminar.svg"></md-icon>
+				</md-button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	</md-content> -->

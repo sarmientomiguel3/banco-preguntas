@@ -1,0 +1,23 @@
+<div align="center">
+<md-toolbar class="md-primary " style="padding:0;max-width:500px" >
+<div class="md-toolbar-tools"><h2 class="md-flex">ADMINISTRADOR DEL SISTEMA</h2>
+</div>
+</md-toolbar>
+<md-content layout="column" align="left" style="padding:24px;max-width:500px" data-ng-init="listarAdmin()">
+
+    <md-input-container flex >
+        <label>Nombre de Usuario administrador</label>
+        <input type="text" ng-model="usuario.NomUsu" style="color:rgba(0,0,0,0.87)" disabled/>
+    </md-input-container>
+    <md-input-container flex >
+        <label>Password</label>
+        <input type="text" ng-model="usuario.Pas" />
+    </md-input-container>
+    <div layout layout-align="center center" flex class="layout-padding3" >
+		<md-button class="md-raised md-primary" ng-click="cambiarPassword($event)" >Cambiar Password</md-button>
+	</div>
+
+</md-content>
+</div>
+
+	

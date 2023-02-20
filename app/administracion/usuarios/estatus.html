@@ -1,0 +1,51 @@
+<md-content>
+<md-tabs md-dynamic-height md-border-bottom >
+	<md-tab label="LISTA DE ESTATUS">
+		<md-content class="md-padding" ng-init="listarStatus()">           
+            <mi-tabla fila-pagina="15" filtrar="true" mi-lista="listaStatus" height="650px" layout="column">
+                <mi-tool >
+                    <md-button class="md-raised md-primary md-mini" ng-click="listarStatus()" aria-label="refrescar">
+                        <md-icon md-svg-src="../resources/img/icons/refresh.svg"></md-icon>
+                    </md-button>
+                </mi-tool>
+                <mi-head mi-order val="Nom" label="Nombre" style="text-align:center;width:300px"></mi-head>
+                <mi-head mi-order val="Abr" label="Abreviacion" style="text-align:center;width:200px;"></mi-head>
+                <mi-head style="text-align:center;width:auto;max-width:300px">Descripcion</mi-head>
+                <mi-head mi-order val="PunVal" label="Puntos Val" style="text-align:center;width:250px"></mi-head>
+                <mi-head style="text-align:center;width:80px;min-width: 80px;">acciones</mi-head>        
+                
+                <mi-body style="text-align:center">{{o.Nom}}</mi-body>
+                <mi-body style="text-align:center">{{o.Abr}}</mi-body>
+                <mi-body style="text-align:center">{{o.Des}}</mi-body>
+                <mi-body style="text-align:center">{{o.PunVal}}</mi-body>
+                <mi-body style="text-align:center;padding: 0;">
+                    <md-button class="md-fab md-primary button-peque" aria-label="Eat cake" ng-click="prepararEditar($event,o)" title="editar" style="margin:0;">
+						<md-icon md-svg-src="../resources/img/icons/editar.svg"></md-icon>
+					</md-button>
+                </mi-body>
+            </mi-tabla>
+		</md-content>
+	</md-tab>
+	<md-tab label="LISTA DE BONOS">
+	<md-content class="md-padding" ng-init="listarBonos()">
+        <mi-tabla fila-pagina="15" filtrar="true" mi-lista="listaBonos" height="560px" layout="column">
+            <mi-tool >
+                <md-button class="md-raised md-primary md-mini" ng-click="listarBonos()" aria-label="refrescar">
+                    <md-icon md-svg-src="../resources/img/icons/refresh.svg"></md-icon>
+                </md-button>
+            </mi-tool>
+            <mi-head mi-order val="Nom" label="Nombre" style="text-align:center;width:400px"></mi-head>
+            <mi-head style="text-align:center;width:auto;max-width:300px">Descripcion</mi-head>
+            <mi-head style="text-align:center;width:80px;min-width: 80px;">acciones</mi-head>        
+            
+            <mi-body style="text-align:center">{{o.Nom}}</mi-body>
+            <mi-body style="text-align:center">{{o.Des}}</mi-body>
+            <mi-body style="text-align:center;padding: 0;">                
+            </mi-body>
+        </mi-tabla>
+
+	
+	</md-content>
+	</md-tab>
+</md-tabs>
+</md-content>

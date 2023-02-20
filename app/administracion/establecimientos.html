@@ -1,0 +1,72 @@
+
+<md-toolbar class="md-primary " style="padding:0">
+<div class="md-toolbar-tools"><h2 class="md-flex">REGISTRO DE ESTABLECIMIENTO</h2>
+</div>
+</md-toolbar>
+	<md-content style="padding:24px 0 8px" layout-wrap layout-xs="column"  >
+		
+		<div layout layout-xs="column" class="layout-padding3">
+			<md-input-container flex>
+				<label>Tipo Establecimiento</label>
+				<md-select ng-model="establecimiento.TipEstID">
+					<md-option ng-repeat="e in tiposEstablecimientos" ng-value="e.TipEstID">
+					{{e.Nom}}
+					</md-option>
+				</md-select>
+			</md-input-container>
+			<md-input-container flex>
+			  <label>Nombre</label>
+			  <input type="text" md-maxlength="32" ng-model="establecimiento.Nom" />
+			</md-input-container>
+		</div>
+		<div layout layout-xs="column" class="layout-padding3">
+			<md-input-container flex>
+			  <label>Direccion del Establecimiento</label>
+			  <input type="text" md-maxlength="64" ng-model="establecimiento.Dir" />
+			</md-input-container>
+		</div>
+		
+		<div layout layout-xs="column" >
+			<md-button class="md-raised md-primary" ng-click="registrarEstablecimiento()" style="margin: 0 auto;">Registrar Establecimiento</md-button>
+		</div>
+	  
+	</md-content><br/>
+	
+	<md-toolbar class="md-primary " style="padding:0">
+	<div class="md-toolbar-tools">
+		<h2 class="md-flex">LISTA DE ESTABLECIMIENTOS</h2>
+		<span flex></span>
+	</div>
+	</md-toolbar>
+	<md-content layout="column" style="padding:8px" data-ng-init="listarEstablecimientos()">
+    
+        <mi-tabla fila-pagina="15" filtrar="true" mi-lista="establecimientos" height="650px" layout="column">
+            <mi-tool >
+                <md-button class="md-raised md-mini md-primary" ng-click="listarEstablecimientos()" aria-label="refrescar">
+                    <md-icon md-svg-src="../resources/img/icons/refresh.svg"></md-icon>
+                </md-button>
+            </mi-tool>
+            <mi-head mi-order val="Cod" label="Codigo" style="text-align:center;width:200px"></mi-head>
+            <mi-head mi-order val="Dir" label="Direccion" style="text-align:center;width:auto"></mi-head>
+            <mi-head mi-order val="tipo" label="Tipo" style="text-align:center;width:auto"></mi-head>
+            <mi-head style="text-align:center;width:auto">Estado</mi-head>
+            <mi-head style="text-align:center;width:113px;min-width: 113px;">acciones</mi-head>
+            
+            <mi-body style="text-align:center">{{o.Nom}}</mi-body>
+            <mi-body style="text-align:center">{{o.Dir}}</mi-body>
+            <mi-body style="text-align:center">{{o.tipo}}</mi-body>
+            <mi-body style="text-align:center">{{o.EstReg}}</mi-body>
+            <mi-body style="text-align:center;padding: 0;">
+                <md-button class="md-fab md-primary button-peque" aria-label="Eat cake" ng-click="prepararEditar($event,o)" style="margin-right:0">
+                    <md-icon md-svg-src="../resources/img/icons/editar.svg"></md-icon>
+                </md-button>
+                <md-button class="md-fab button-peque" aria-label="Use Android" ng-click="eliminarEstablecimiento($event,$index,o)" style="margin-left:0">
+                    <md-icon md-svg-src="../resources/img/icons/eliminar.svg"></md-icon>
+                </md-button>
+            </mi-body>
+        </mi-tabla>
+	
+    </md-content>  
+
+
+	

@@ -1,0 +1,38 @@
+<md-dialog aria-label="WebSite" style="width:500px">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>{{title}}</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="../resources/img/icons/cerrar.svg" aria-label="cerrar dialogo"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content layout layout-wrap layout-xs="column" layout-padding>
+		<div flex="100">
+			<md-input-container class="md-block">
+			  <label>Dominio</label>
+			  <input type="text" ng-model="webSel.Dom" />
+			</md-input-container>
+			<md-input-container class="md-block">
+			  <label>Titulo</label>
+			  <input type="text" ng-model="webSel.Tit" />
+			</md-input-container>
+			<md-input-container class="md-block">
+			  <label>Descripcion</label>
+			  <input type="text" ng-model="webSel.Des" />
+			</md-input-container>
+		</div>
+    </md-dialog-content>
+	<md-dialog-actions layout="row">
+		<md-button class="md-raised md-warn" ng-click="cancel()" >
+		 Cancelar
+		</md-button>
+		<md-button class="md-raised md-primary" ng-click="save()" style="margin-right:20px;" >
+		  Guardar Cambios
+		</md-button>
+	</md-dialog-actions>
+  </form>
+</md-dialog>
+

@@ -1,0 +1,92 @@
+<md-toolbar class="md-primary " style="padding:0">
+<div class="md-toolbar-tools"><h2 class="md-flex">REGISTRO DE VISTAS</h2>
+</div>
+</md-toolbar>
+<md-content layout layout-wrap layout-xs="column" layout-padding>
+
+	<div flex="80" flex-xs="100">
+        <md-input-container class="md-block" >
+            <label>Ventana Padre</label>
+            <md-select ng-model="ventana.VenPadID">
+                <md-option ng-value="null" >Sin Padre</md-option>
+                <md-option ng-repeat="ventana in listaVentanasPadres" ng-value="ventana.VenID">
+                {{ventana.Nom}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <div layout-gt-sm="row" >
+		<md-input-container class="md-block" flex-gt-sm>
+		  <label>Nombre</label>
+		  <input type="text" ng-model="ventana.Nom" />
+		</md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+		  <label>Clave</label>
+		  <input type="text" ng-model="ventana.Url" />
+		</md-input-container>
+        </div>
+		
+		<md-input-container class="md-block" >
+		  <label>Url de la vista</label>
+		  <input type="text" ng-model="ventana.Lin" />
+		</md-input-container>
+        <md-input-container class="md-block" >
+		  <label>Url controlador</label>
+		  <input type="text" ng-model="ventana.Ctr" />
+		</md-input-container>
+        
+	</div>
+	<div flex="20" flex-xs="100" >
+		<div layout-xs="row">
+			<div flex-xs="50" flex="100">
+				<div id="mostrarImagen1" class="mi-img" style="min-height: 100px;max-height: 160px"></div>
+			</div>
+			<div flex-xs="50" flex="100" align="center">
+				<md-button id="uploadButton" class="md-raised" ng-click="elegirImagen()"> Elegir Icono </md-button>
+				<input type="file" id="imagen1" class="ng-hide" onchange="angular.element(this).scope().cambiarArchivo(this)"/>
+			</div>
+		</div>
+	</div>
+	<div flex="100" align="center">
+		<md-button class="md-raised md-primary" ng-click="registrarVentana()">Registrar</md-button>
+	</div>
+
+</md-content><br/>
+
+<md-toolbar class="md-primary " >
+<div class="md-toolbar-tools">
+	<h2 class="md-flex">LISTA DE VISTAS</h2>
+	<span flex></span>
+	<md-button class="md-raised md-primary" ng-click="listarVentanas()">Listar</md-button>
+</div>
+</md-toolbar>
+<md-content layout layout-xs="column" style="padding:8px">
+<table style="width:100%;" data-ng-init="listarVentanas()" class="table table-hover table-striped">
+	<thead>
+		<tr>
+			<th style="text-align:center">Nombre</th>
+			<th style="text-align:center">Clave</th>
+			<th style="text-align:center;">Url vista</th>
+			<th style="text-align:center">Icono</th>
+			<th style="text-align:center">accion</th>
+		</tr>
+	</thead>
+	<tbody >
+		<tr ng-repeat="v in listaVentanas">
+			<td style="text-align:center">{{v.Nom}}</td>
+			<td style="text-align:center">{{v.Url}}</td>
+			<td style="text-align:center;">{{v.Lin}}</td>
+			<td style="text-align:center;padding:0">
+				<div class="face"><img ng-src="../resources/img/menu/{{v.Ico}}" alt=""/></div>
+			</td>				
+			<td style="text-align:center;padding: 0;width:80px">
+			<md-button class="md-fab button-peque md-primary" aria-label="Eat cake" ng-click="prepararEditar($event,v)" style="margin-right:0">
+				<md-icon md-svg-src="../resources/img/icons/editar.svg"></md-icon>
+			</md-button>
+			<md-button class="md-fab button-peque" aria-label="Use Android" ng-click="eliminarVentana($index,v)" style="margin-left:0">
+				<md-icon md-svg-src="../resources/img/icons/eliminar.svg"></md-icon>
+			</md-button>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</md-content>

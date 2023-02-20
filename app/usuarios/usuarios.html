@@ -1,0 +1,65 @@
+<div class="my-section">
+	<div class="my-content">
+		<md-toolbar class="md-primary " >
+		<div class="md-toolbar-tools">
+			<h2 class="md-flex">Todos los Usuarios</h2>
+			<span flex></span>
+			<!-- <md-button class="md-raised md-primary" ng-click="prepareNew($event)" title="registar curso">Nuevo</md-button>
+			<md-button class="md-raised" ng-click="list()" title="listar de cursos">Listar</md-button> -->
+		</div>
+		</md-toolbar>
+
+
+		<md-content layout layout-xs="column" style="padding:32px">
+				<div flex="30" flex-xs="100">
+					<md-input-container class="md-block" data-ng-init="cargarRoles()">
+						<label>Rol</label>
+						<md-select ng-model="buscar" > 
+							<md-option ng-value="''" >Todos</md-option>
+							<md-option ng-repeat="t in listRoles" ng-value="t.RolID">
+								{{t.Nom}}
+							</md-option>
+						</md-select>
+					</md-input-container>
+				</div>
+				<div flex></div>
+				<md-button class="md-raised md-primary" ng-click="prepareNew($event,nuevoUsuario)">Nuevo</md-button>
+			</md-content>
+<!-- <div flex="100">
+      <h2 class="md-title">Selected Items</h2>
+      <pre style="display: block; padding: 8px;">{{selected | json}}</code>
+    </div> -->
+  </div>
+		<md-content layout layout-xs="column" style="padding:8px">
+			<table style="width:100%;" data-ng-init="list()" class="table table-hover table-striped">
+				<thead>
+					<tr>
+						<th style="text-align:center">ID</th>
+						<th style="text-align:center">Usuario</th>
+						<th style="text-align:center">dni</th>
+						<th style="text-align:center">Nombre</th>
+						<th style="text-align:center">Rol</th>
+						<th style="text-align:center">accion</th>
+					</tr>
+				</thead>
+				<tbody >
+					<tr ng-repeat="t in listRegisters |filter : {Rol:buscar} ">
+						<td style="text-align:center">{{t.UseId}}</td>
+						<td style="text-align:center">{{t.NomUsu}}</td>
+						<td style="text-align:center">{{t.dni}}</td>
+						<td style="text-align:center">{{t.Nombres}}</td>
+						<td style="text-align:center">{{t.Rol}}</td>
+						<td style="text-align:center;padding: 0;width:120px">
+							<md-button class="md-fab button-peque md-primary" aria-label="Eat cake" ng-click="prepareUpdate($event,t)" title="editar tema" style="margin-right:0">
+								<md-icon md-svg-src="../resources/img/icons/editar.svg"></md-icon>
+							</md-button>
+							<md-button class="md-fab button-peque" aria-label="Use Android" ng-click="deleteRegister($index,t)" title="eliminar" style="margin-left:0">
+								<md-icon md-svg-src="../resources/img/icons/eliminar.svg"></md-icon>
+							</md-button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</md-content>
+	</div>
+</div>

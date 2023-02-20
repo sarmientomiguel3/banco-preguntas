@@ -1,0 +1,60 @@
+<md-dialog aria-label="Ubicar Cantidad" style="width:500px">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Ubicar - {{producto.Cod}}</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancelar()">
+          <md-icon md-svg-src="../resources/img/icons/cerrar.svg" aria-label="cerrar dialogo"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:900px;max-height:810px; ">
+      <div class="md-dialog-content" >
+        <div layout > 
+        <md-input-container flex>
+			<label>Establecimiento</label>
+			<md-select ng-model="ubicacion.EstID">
+				<md-option ng-repeat="e in establecimientos" ng-value="e.EstID">
+				{{e.Nom}}
+				</md-option>
+			</md-select>
+		</md-input-container >
+        </div>
+		<div layout >        
+        <md-input-container flex >
+		  <label>Cantidad</label>
+		  <input type="text" ng-model="ubicacion.Can" />
+		</md-input-container>
+        <div flex>
+		  <md-button class="md-raised" ng-click="agregarUbicacion()" style="width:100%" ng-disabled="ubicacion.EstID <= 0 ">agregar</md-button>
+        </div>
+		</div>
+				
+		
+		<div flex="100"><fieldset class="mi-fieldset" ><legend >Lista de Ubicaciones</legend></fieldset></div>
+		<table style="width:100%;padding-bottom: 0;" class="table table-hover table-striped table-mc-cyan">
+			<thead>
+				<tr>
+					<th style="text-align:center">Establecimiento</th>
+					<th style="text-align:center">Cantidad</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="u in ubicaciones">
+					<td style="text-align:center">{{u.Nom}}</td>
+					<td style="text-align:center">{{u.Can}}</td>
+				</tr>
+			</tbody>
+		</table>
+      </div>
+    </md-dialog-content>
+	
+	<md-dialog-actions layout="row">
+		<md-button class="md-raised md-warn" ng-click="cancelar()" >
+		 Cerrar
+		</md-button>
+	</md-dialog-actions>
+  </form>
+</md-dialog>
+

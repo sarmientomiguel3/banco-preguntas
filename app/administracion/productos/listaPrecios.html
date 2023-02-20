@@ -1,0 +1,79 @@
+<md-toolbar class="md-primary " style="padding:0">
+<div class="md-toolbar-tools">
+	<h2 class="md-flex">LISTA DE PRECIOS A DISTRIBUIDORES</h2>
+</div>
+</md-toolbar>
+<md-content layout layout-xs="column" layout-padding="0">
+
+<md-tabs md-dynamic-height md-border-bottom flex ng-init="listarProductos()">
+	<md-tab label="PRODUCTOS PACKS">
+		<md-content class="md-padding" layout="column">
+        
+        <mi-tabla filtrar="true" mi-lista="listaProductosPack" height="650px" layout="column">            
+            <mi-head mi-order val="Cod" label="Codigo" style="text-align:center;width:200px"></mi-head>
+            <mi-head mi-order val="Nom" label="Nombre Producto" style="text-align:center;width:auto"></mi-head>
+            <mi-head style="text-align:center;width:13%;">Precio Final<br/>(S/.)</mi-head>
+            <mi-head style="text-align:center;width:13%;">Bono Por Venta<br/>(S/.)</mi-head>
+            <mi-head style="text-align:center;width:13%;">Puntos Taured<br/>(PT)</mi-head>
+            <mi-head style="text-align:center;width:13%;">Puntos Taured patrocinado<br/>(PT)</mi-head>
+            <mi-head style="text-align:center;width:13%;">Valor Venta<br/>(ST)</mi-head>
+            
+            <mi-body style="text-align:center">{{o.Cod}}</mi-body>
+            <mi-body >{{o.Nom}}</mi-body>
+            <mi-body style="text-align:center">
+                <col-edi celda="o.Pre" label="Pre" id="o.ProID" label-id="ProID" fun="actualizarCampo" ></col-edi>
+            </mi-body>
+            <mi-body style="text-align:center">
+                <col-edi celda="o.Pre2" label="Pre2" id="o.ProID" label-id="ProID" fun="actualizarCampo"></col-edi>
+            </mi-body>
+            <mi-body style="text-align:center">
+                <col-edi celda="o.PunVal" label="PunVal" id="o.ProID" label-id="ProID" fun="actualizarCampo"></col-edi>
+            </mi-body>
+            <mi-body style="text-align:center">
+                <col-edi celda="o.PunValPat" label="PunValPat" id="o.ProID" label-id="ProID" fun="actualizarCampo"></col-edi>
+            </mi-body>
+            <mi-body style="text-align:center">
+                <col-edi celda="o.ValVen" label="ValVen" id="o.ProID" label-id="ProID" fun="actualizarCampo"></col-edi>
+            </mi-body>
+        </mi-tabla>
+		
+		</md-content>
+	</md-tab>
+	<md-tab label="PRODUCTOS">
+		<md-content class="md-padding" layout="column">
+        
+        <mi-tabla fila-pagina="15" filtrar="true" mi-lista="listaProductosOtros" height="650px" layout="column">            
+            <mi-head mi-order val="Cod" label="Codigo" style="text-align:center;width:200px"></mi-head>
+            <mi-head mi-order val="Nom" label="Nombre Producto" style="text-align:center;width:auto"></mi-head>
+            <mi-head style="text-align:center;width:15%;">Precio Turense<br/>(S/.)</mi-head>
+            <mi-head style="text-align:center;width:15%;">Precio Publico<br/>(S/.)</mi-head>
+            <mi-head style="text-align:center;width:15%;">Puntos Taured<br/>(PT)</mi-head>
+            <mi-head style="text-align:center;width:15%;">Valor Venta<br/>(VV)</mi-head>
+            
+            <mi-body style="text-align:center">{{o.Cod}}</mi-body>
+            <mi-body >{{o.Nom}}</mi-body>
+            <mi-body style="text-align:center">
+                <col-edi celda="o.Pre" label="Pre" id="o.ProID" label-id="ProID" fun="actualizarCampo"></col-edi>
+            </mi-body>
+            <mi-body style="text-align:center">
+                <col-edi celda="o.Pre2" label="Pre2" id="o.ProID" label-id="ProID" fun="actualizarCampo"></col-edi>
+            </mi-body>
+            <mi-body style="text-align:center">
+                <col-edi celda="o.PunVal" label="PunVal" id="o.ProID" label-id="ProID" fun="actualizarCampo"></col-edi>
+            </mi-body>
+            <mi-body style="text-align:center">
+                <col-edi celda="o.ValVen" label="ValVen" id="o.ProID" label-id="ProID" fun="actualizarCampo"></col-edi>
+            </mi-body>
+        </mi-tabla>
+
+		</md-content>
+	</md-tab>
+</md-tabs>
+		
+		
+		
+</md-content>
+
+
+	
+	

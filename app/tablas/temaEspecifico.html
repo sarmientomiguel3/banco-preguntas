@@ -1,0 +1,67 @@
+<div class="my-section">
+	<div class="my-content">
+		<md-toolbar class="md-primary " >
+		<div class="md-toolbar-tools">
+			<h2 class="md-flex">Lista de Temas Especificos</h2>
+			<span flex></span>
+			<md-button class="md-raised md-primary" ng-click="prepareNew($event)" title="registar curso">Nuevo</md-button>
+			<md-button class="md-raised" ng-click="list()" title="listar de cursos">Listar</md-button>
+		</div>
+		</md-toolbar>
+
+		<md-content layout layout-wrap layout-xs="column" layout-padding >
+			<div flex="30" flex-xs="100">
+				<md-input-container class="md-block" data-ng-init="listarCursos()">
+					<label>Curso</label>
+					<md-select ng-model="pregunta.fkIdCur" >
+						<md-option ng-value="null" ></md-option>
+						<md-option ng-repeat="itemCurso in listaCursos" ng-value="itemCurso.IdCur">
+						{{itemCurso.NomCur}}
+						</md-option>
+					</md-select>
+				</md-input-container>
+			</div>
+			<div flex="30" flex-xs="100">
+				<md-input-container class="md-block" data-ng-init="listarTemas()">
+					<label>Tema</label>
+					<md-select ng-model="pregunta.fkIdTem" ng-disabled="!pregunta.fkIdCur">
+						<md-option ng-value="null" ></md-option>
+						<md-option ng-repeat="itemTema in listaTemas | filter : {'fkIdCur':pregunta.fkIdCur}" ng-value="itemTema.IdTem">
+						{{itemTema.DesTem}}
+						</md-option>
+					</md-select>
+				</md-input-container>
+			</div>
+		</md-content>
+
+		<md-content layout layout-xs="column" style="padding:8px">
+			<table style="width:100%;" data-ng-init="list()" class="table table-hover table-striped">
+				<thead>
+					<tr>
+						<td style="text-align:center">ID</td>
+						<th style="text-align:center">Tema Especifico</th>
+						<th style="text-align:center;">Tema</th>
+						<th style="text-align:center;">Curso</th>
+						<th style="text-align:center">accion</th>
+					</tr>
+				</thead>
+				<tbody >
+					<tr ng-repeat="t in listRegisters | filter : {'fkIdCur':idCur,'fkIdTem':idTem}">
+						<td style="text-align:center">{{t.IdTemEsp}}</td>
+						<td style="text-align:center">{{t.DesTemEsp}}</td>
+						<td style="text-align:center;">{{t.fkIdTem | codetovalue : 'IdTem': 'DesTem' :listaTemas }}</td>
+						<td style="text-align:center;">{{t.fkIdCur | codetovalue : 'IdCur': 'NomCur' :listaCursos }}</td>
+						<td style="text-align:center;padding: 0;width:120px">
+							<md-button class="md-fab button-peque md-primary" aria-label="Eat cake" ng-click="prepareUpdate($event,t)" title="editar tema" style="margin-right:0">
+								<md-icon md-svg-src="../resources/img/icons/editar.svg"></md-icon>
+							</md-button>
+							<md-button class="md-fab button-peque" aria-label="Use Android" ng-click="deleteRegister($index,t)" title="eliminar" style="margin-left:0">
+								<md-icon md-svg-src="../resources/img/icons/eliminar.svg"></md-icon>
+							</md-button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</md-content>
+	</div>
+</div>

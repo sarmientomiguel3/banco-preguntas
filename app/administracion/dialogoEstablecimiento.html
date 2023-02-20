@@ -1,0 +1,47 @@
+<md-dialog aria-label="Editar Establecimiento" style="width:550px">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Editar Establecimiento</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancelar()">
+          <md-icon md-svg-src="../resources/img/icons/cerrar.svg" aria-label="cerrar dialogo"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:900px;max-height:810px; ">
+      <div class="md-dialog-content">
+			<div layout layout-xs="column" class="layout-padding2">
+				<md-input-container flex>
+					<label>Tipo Establecimiento</label>
+					<md-select ng-model="establecimientoSel.TipEstID">
+						<md-option ng-repeat="e in tiposEstablecimientos" ng-value="e.TipEstID">
+						{{e.Nom}}
+						</md-option>
+					</md-select>
+				</md-input-container>
+				<md-input-container flex>
+				  <label>Nombre</label>
+				  <input type="text" md-maxlength="32" ng-model="establecimientoSel.Nom" />
+				</md-input-container>
+			</div>
+			<div layout layout-xs="column" class="layout-padding2">
+				<md-input-container flex>
+				  <label>Direccion del Establecimiento</label>
+				  <input type="text" md-maxlength="64" ng-model="establecimientoSel.Dir" />
+				</md-input-container>
+			</div>
+      </div>
+    </md-dialog-content>
+	
+	<md-dialog-actions layout="row">
+		<md-button class="md-raised md-warn" ng-click="cancelar()" >
+		 Cancelar
+		</md-button>
+		<md-button class="md-raised md-warn" ng-click="guardarCambios()" style="margin-right:20px;" >
+		  Guardar Cambios
+		</md-button>
+	</md-dialog-actions>
+  </form>
+</md-dialog>
+

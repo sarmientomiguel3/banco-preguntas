@@ -1,0 +1,164 @@
+
+<md-dialog aria-label="Editar Alternativa" style="width:80%"  ng-init="ngInitData()">
+	<form ng-cloak>
+	  <md-toolbar>
+		<div class="md-toolbar-tools">
+		  <h2>PREGUNTA   ID : {{pregunta.IdPre}}</h2>
+		  <span flex></span>
+		  <md-button class="md-icon-button" ng-click="cancelar()">
+			<md-icon md-svg-src="../resources/img/icons/cerrar.svg" aria-label="cerrar dialogo"></md-icon>
+		  </md-button>
+		</div>
+	  </md-toolbar>
+	  <!-- <md-dialog-content style="max-width:900px;max-height:810px; "> -->
+	  <md-dialog-content >
+		
+
+
+<md-content layout layout-wrap layout-xs="column" layout-padding >
+<div flex="30" flex-xs="100">
+	<md-input-container class="md-block" >
+		<label>Curso</label>
+		<input type="text" ng-model="pregunta.NomCur" disabled>
+	</md-input-container>
+</div>
+<div flex="30" flex-xs="100">
+	<md-input-container class="md-block" >
+		<label>Tema</label>
+		<input type="text" ng-model="pregunta.DesTem" disabled>
+	</md-input-container>
+</div>
+<div flex="40" flex-xs="100">
+	<md-input-container class="md-block" >
+		<label>Tema Específico</label>
+		<input type="text" ng-model="pregunta.DesTemEsp" disabled>
+	</md-input-container>
+</div>
+<div flex="40" flex-xs="100">
+	<md-input-container class="md-block" >
+		<label>Area Sujerida</label>
+		<input type="text" ng-model="pregunta.DesAreSug" disabled>
+	</md-input-container>
+</div>
+<!-- Listar DesDif -->
+<div flex="40" flex-xs="100">
+	<md-input-container class="md-block" >
+		<label>Dificultad</label>
+		<input type="text" ng-model="pregunta.DesDif" disabled>
+	</md-input-container>
+</div>
+
+<md-toolbar class="md-theme-light">
+	<h2 class="md-toolbar-tools">
+		<span>Enunciado</span>
+	</h2>
+</md-toolbar>
+<!-- <div layout-gt-sm="row" > Editar su pregunta
+</div> -->
+<div flex="80" flex-xs="100">
+
+		<span id="tempid"
+		contenteditable="true" 
+		ng-model="pregunta.TxtPre">
+		</span>
+
+	<!-- <math-editor  ma="ma" data="pregunta.TxtPre" required></math-editor> -->
+</div>
+<div flex="20" flex-xs="100" >
+	<div layout-xs="row">
+		
+		<div md-dynamic-height="">
+			<div ng-if="(pregunta.ImgPre)">
+				<img style="max-height:250px;        /* for IE as it does not support min-height */display: block;margin-left: auto;margin-right: auto;max-width: 250px;" src="http://localhost:8080/BancoUnsa/resources/img/bancoPreguntaUnsa/{{pregunta.ImgPre}}">	
+			</div>
+			
+		</div>
+		
+	</div>
+</div>
+<!-- <div flex="100" align="center">
+	<md-button class="md-raised md-primary" ng-click="registrarVentana()">Registrar</md-button>
+</div> -->
+
+
+	<div flex="100" flex-xs="100" >
+	<div >
+
+		<md-toolbar class="md-theme-light">
+		<h2 class="md-toolbar-tools">
+			<span>Alternativas</span>
+		</h2>
+		</md-toolbar>
+
+		<md-content>
+		<md-list>
+			<md-list-item class="md-3-line" ng-repeat="(index, item) in alternativas" ng-click="EditarAlternativa($event,index)">
+				<div class="md-list-item-text" >  
+					<small ng-if="!item.DesAlt">
+						Agrege su pregunta
+					</small>
+					<span id="tempid"
+					contenteditable="true" 
+					ng-model="item.DesAlt"
+					>
+					</span>
+				</div>
+				<md-checkbox ng-model="item.CorAlt" disabled></md-checkbox>
+				<md-divider ng-if="!$last"></md-divider>
+				<div md-dynamic-height="">
+						<div ng-if="(item.ImgAlt)">
+							<img style="max-height:250px;        
+							/* for IE as it does not support min-height */display: block;margin-left: auto;margin-right: auto;max-width: 250px;" 
+							src="http://localhost:8080/BancoUnsa/resources/img/bancoPreguntaUnsa/{{item.ImgAlt}}">	
+						</div>
+						
+					</div>
+			</md-list-item>
+		</md-list>
+		</md-content>
+
+	</div>
+	</div>
+
+	
+	<md-toolbar class="md-theme-light">
+			<h2 class="md-toolbar-tools">
+				<span>Justificacion</span>
+			</h2>
+			</md-toolbar>
+	<div flex="70" flex-xs="100" >
+		<br>
+		<md-input-container class="md-block">
+			<label>Justificacion</label>
+			<textarea ng-model="justificacion.DesJus" md-maxlength="250" rows="4" md-select-on-focus></textarea>
+		</md-input-container>
+	</div>
+	<div flex="30" flex-xs="100" >
+		<div layout-xs="row">
+			<div md-dynamic-height="">
+
+				<div ng-if="justificacion.ImgJus">
+					<img style="max-height:250px;        /* for IE as it does not support min-height */display: block;margin-left: auto;margin-right: auto;max-width: 250px;" src="http://localhost:8080/BancoUnsa/resources/img/bancoPreguntaUnsa/{{justificacion.ImgJus}}">	
+				</div>
+
+			</div>
+			
+		</div>
+	</div>
+</md-content>
+
+
+
+
+
+	  </md-dialog-content>
+	  
+	  <md-dialog-actions layout="row">
+		  <md-button class="md-raised md-warn" ng-click="cancelar()" >
+		   Cancelar
+		  </md-button>
+	  </md-dialog-actions>
+	</form>
+</md-dialog>
+
+

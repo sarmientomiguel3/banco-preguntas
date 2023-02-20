@@ -1,0 +1,107 @@
+<div class="my-section">
+	<div class="my-content">
+			<md-toolbar class="md-primary " style="padding:0">
+					<div class="md-toolbar-tools">
+						<h2 class="md-flex">Revisor Dos</h2>
+					</div>
+					</md-toolbar>
+					<md-content style="padding:8px" ng-init="listarPregunta()">
+						<mi-tabla fila-pagina="10" mi-lista="listaPreguntas" height="560px" filtrar="true" layout="column">
+							<mi-tool >
+								<md-button class="md-raised md-mini md-primary" ng-click="listarPregunta()" aria-label="refrescar">
+									<md-icon md-svg-src="../resources/img/icons/refresh.svg"></md-icon>
+								</md-button>
+							</mi-tool>
+							<mi-head mi-order val="IdPre" label="IdPre" style="text-align:center;width:50px"></mi-head>
+							<mi-head mi-order val="NomUsu" label="NomUsu" style="text-align:center;width:150px"></mi-head>
+							<mi-head mi-order val="Nombres" label="Nombres" style="text-align:center;width:150px"></mi-head>
+							<mi-head mi-order val="EstRev1" label="EstRev1" style="text-align:center;width:150px"></mi-head>
+							<mi-head mi-order val="EstRev2" label="EstRev2" style="text-align:center;width:150px"></mi-head>
+							<mi-head mi-order val="Obs" label="Obs" style="text-align:center;width:150px"></mi-head>
+							<mi-head style="text-align:center;width:113px;min-width: 113px;">acciones</mi-head>
+							
+							<mi-body style="text-align:center">{{o.IdPre}}</mi-body>
+							<mi-body style="text-align:center">{{o.NomUsu}}</mi-body>
+							<mi-body style="text-align:center">{{o.Nombres}}</mi-body>
+							<mi-body style="text-align:center">{{o.EstRev1}}</mi-body>
+							<mi-body style="text-align:center">{{o.EstRev2}}</mi-body>
+							<mi-body style="text-align:center">{{o.Obs}}</mi-body>
+							
+							<mi-body style="text-align:center;padding: 0;">
+								<md-button class="md-fab md-primary button-peque" aria-label="ver" ng-click="prepararUbicar($event,o)" title="ver ubicacion" style="margin:0">
+									<md-icon md-svg-src="../resources/img/icons/ver.svg"></md-icon>
+								</md-button>
+								<md-button class="md-fab md-primary button-peque" aria-label="editar" ng-click="prepararEditar($event,o)" title="editar" style="margin:0;">
+									<md-icon md-svg-src="../resources/img/icons/editar.svg"></md-icon>
+								</md-button>
+								<md-button class="md-fab button-peque md-primary" aria-label="Eat cake" ng-click="Aceptar($event,o)" title="Aceptar Pregunta" style="margin-right:0">
+									<md-icon md-svg-src="../resources/img/icons/aceptadas.svg"></md-icon>
+								</md-button>
+							</mi-body>
+						</mi-tabla>
+					</md-content>
+
+					<!-- <md-content layout layout-wrap layout-xs="column" layout-padding>
+							<md-toolbar class="md-theme-light">
+								<h2 class="md-toolbar-tools">
+									<span>Editar su pregunta</span>
+								</h2>
+							</md-toolbar>
+							
+							<div flex="80" flex-xs="100">
+								<math-editor  ma="ma" data="pregunta.txtPregunta" ></math-editor>
+							</div>
+							<div flex="20" flex-xs="100" >
+								<div layout-xs="row">
+									<div md-dynamic-height="">
+										<div id="mostrarImagenPregunta" class="mi-img" style="min-height: 100px" ></div>
+									</div>
+									<div flex-xs="50" flex="100" align="center">
+										<md-button id="uploadButtonPregunta" class="md-raised" ng-click="elegirImagen('imagenPreguntra')"> Subir Imagen</md-button>
+										<input type="file" id="imagenPreguntra" class="ng-hide" onchange="angular.element(this).scope().cambiarArchivo(this,'mostrarImagenPregunta')"/>
+									</div>
+								</div>
+							</div>
+					
+						</md-content>
+							<md-content layout layout-wrap layout-xs="column" layout-padding>
+								<div flex="100" flex-xs="100" >
+								<div >
+						
+									<md-toolbar class="md-theme-light">
+									<h2 class="md-toolbar-tools">
+										<span>Alternativas</span>
+									</h2>
+									</md-toolbar>
+						
+									<md-content>
+									<md-list>
+										<md-list-item class="md-3-line" ng-repeat="(key, item) in pregunta.alternativa" ng-click="EditarAlternativa($event,pregunta.alternativa,key)">
+											<div class="md-list-item-text" >  
+												<small ng-if="!item.descripcionPregunta">
+													Agrege su pregunta
+												</small>
+												<span id="tempid"
+												contenteditable="true" 
+												ng-model="item.descripcionPregunta">
+												</span>
+											</div>
+											<md-button class="md-secondary" ng-click="EditarAlternativa($event,pregunta.alternativa,key)">Add</md-button>
+											<md-checkbox ng-model="item.tipoAlternativa" ng-change="aceptarUno(pregunta.alternativa,key)"></md-checkbox>
+											<md-divider ng-if="!$last"></md-divider>
+										</md-list-item>
+									</md-list>
+									</md-content>
+						
+								</div>
+								</div>
+								<div flex="100" align="center">
+									<md-button class="md-raised md-primary" ng-click="registrarPregunta()">Registrar</md-button>
+								</div>
+							</md-content><br/> -->
+
+		
+	</div>
+
+	<br/>
+</div>

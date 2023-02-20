@@ -1,0 +1,64 @@
+<md-dialog aria-label="Editar Rol" style="width:800px">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Editar Rol</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancelar()">
+          <md-icon md-svg-src="../resources/img/icons/cerrar.svg" aria-label="cerrar dialogo"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:900px;max-height:810px; ">
+      <div class="md-dialog-content">
+        <div layout="row" layout-xs="column">
+			<div flex="100" flex-xs="100">
+				<md-input-container class="md-block">
+					<label>Nombre del Rol</label>
+					<input type="text" ng-model="rolSel.Nom" />
+					
+				</md-input-container>
+				<md-input-container class="md-block">
+					<label>Descripción</label>
+					<input type="text" ng-model="rolSel.Des" />
+				</md-input-container>
+				<md-content class="autocomplete" flex style="padding-bottom: 3px;">
+					<md-contact-chips ng-model="listaVentanasSel2" md-contacts="buscarVentanas2($query)" md-contact-name="Nom"
+										md-contact-image="imagen" md-require-match="true"
+										md-highlight-flags="i" filter-selected="true" placeholder="+ Funciones"
+										md-on-add="">
+					</md-contact-chips>
+					
+					<md-list layout="row" layout-wrap>
+					  <md-list-item class="md-2-line" ng-repeat="(index, ventana) in listaVentanas2"
+						  ng-if="listaVentanasSel2.indexOf(ventana) < 0" flex="25" flex-xs="50">
+						<img ng-src="{{ventana.imagen}}" class="md-avatar" alt="{{ventana.Nom}}" />
+						<div class="md-list-item-text compact">
+						  <h3>{{ventana.Nom}}</h3>
+						</div>
+					  </md-list-item>
+					  <md-list-item class="md-2-line " style="opacity: 0.5;" ng-repeat="(index, ventana) in listaVentanasSel2" flex="25" flex-xs="50">
+						<img ng-src="{{ventana.imagen}}" class="md-avatar" alt="{{ventana.Nom}}" />
+						<div class="md-list-item-text compact">
+						  <h3>{{ventana.Nom}}</h3>
+						</div>
+					  </md-list-item>
+					</md-list>
+					
+				</md-content>
+			</div>
+		</div>
+      </div>
+    </md-dialog-content>
+	
+	<md-dialog-actions layout="row">
+		<md-button class="md-raised md-warn" ng-click="cancelar()" >
+		 Cancelar
+		</md-button>
+		<md-button class="md-raised md-warn" ng-click="guardarCambios()" style="margin-right:20px;" >
+		  Guardar Cambios
+		</md-button>
+	</md-dialog-actions>
+  </form>
+</md-dialog>
+

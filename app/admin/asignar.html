@@ -1,0 +1,88 @@
+<md-toolbar class="md-primary " style="padding:0">
+    <div class="md-toolbar-tools"><h2 class="md-flex">ASIGNAR PREGUNTAS REVISOR DE PERTINENCIA  </h2>
+    </div>
+    </md-toolbar>
+    
+    <md-content layout layout-wrap layout-xs="column" layout-padding >
+        <div flex="30" flex-xs="100">
+            <md-input-container class="md-block" data-ng-init="listarCursos()">
+                <label>Curso</label>
+                <md-select ng-model="pregunta.IdCur" ng-change="listarRevisor1(); limpiarSelect()" >
+                    <md-option ng-value="Todo"></md-option>
+                    <md-option ng-repeat="itemCurso in listaCursos" ng-value="itemCurso.IdCur">
+                    {{itemCurso.NomCur}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+    </md-content>
+    <div ng-cloak="" class="tabsdemoDynamicHeight" >
+        <md-content layout layout-wrap layout-xs="column" layout-padding>
+            <div flex="100" flex-xs="100"> 
+          <md-tabs md-dynamic-height="" md-border-bottom="padding" md-center-tabs>
+            <md-tab label="REVISOR 1">								
+              <md-content class="md-padding">
+      <!-- ID PROFESOR 2 -->
+                <md-content layout layout-wrap layout-xs="column" layout-padding >
+                    <div flex="100" flex-xs="100">
+                        <md-input-container class="md-block">
+                            <label>Revisor de Pertinencia</label>
+                            <md-select ng-model="usuario.revisor1"  ng-disabled="!pregunta.IdCur" ng-change="listarPreguntasCursos(); limpiarSelect()">                    
+                                <md-option ng-repeat="itemRevisor1 in listaRevisores1" ng-value="itemRevisor1.UseId">
+                                {{itemRevisor1.Nom}} {{itemRevisor1.PriApe}} {{itemRevisor1.SegApe}}
+                                </md-option> 
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                </md-content>    
+                <!-- Tabla Para listar las preguntas-->
+                <md-toolbar class="md-primary " >
+                    <div class="md-toolbar-tools">
+                        <h2 class="md-flex">LISTA DE PREGUNTAS</h2>
+                        <span flex></span>
+                        <md-button class="md-raised md-primary" ng-click="listarPreguntasCursos(); limpiarSelect()">Listar</md-button>
+                        <md-button class="md-raised md-primary" ng-click="asignarPreguntasR1()">Asignar</md-button>
+                    </div>
+                    </md-toolbar>
+                    <md-content layout layout-xs="column" style="padding:8px">
+                        <table style="width:100%;" class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center">ID</th>
+                                    <th style="text-align:center">Pregunta</th>
+                                    <th style="text-align:center">Curso</th>
+                                    <th style="text-align:center">Elegir</md-button></th>
+                                </tr>
+                            </thead>
+                            <tbody >
+                                <tr ng-repeat="p in listaPreguntasCurso">
+                                    <td style="text-align:center">{{p.IdPre}}</td>
+                                    <td style="text-align:center">{{p.TxtPre}}</td>
+                                    <td style="text-align:center">{{p.NomCur}}</td>
+                                    <td style="text-align:center;padding: 0;width:80px;">
+                                    <!-- Check -->
+                                        <!-- <md-checkbox ng-checked="exists(item, selected)" ng-click="toggle(item, selected)" style="margin-top:10px;"></md-checkbox> -->
+                                        <md-checkbox ng-checked="exists(p.IdPre, selected)" ng-click="toggle(p.IdPre, selected)" aria-label="Checkbox 1">
+                                            <!-- {{ p }} <span ng-if="exists(p, selected)">selected</span> -->
+                                        </md-checkbox>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </md-content>
+<!--                 
+                    AYUDA     -->
+                     <div flex="100">
+                        <h2 class="md-title">Preguntas Seleccionadas</h2>
+                        <code style="display: block; padding: 8px;">{{selected | json}}</code>
+                      </div> 
+              </md-content>
+            </md-tab>
+          </md-tabs>
+        </div>
+        </md-content>
+     
+</div>
+ 
+        
+       

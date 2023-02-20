@@ -1,0 +1,49 @@
+<md-dialog aria-label="WebSite" style="width:600px">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>{{title}}</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancelar()">
+          <md-icon md-svg-src="../resources/img/icons/cerrar.svg" aria-label="cerrar dialogo"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content layout layout-wrap layout-xs="column" layout-padding>
+		<div flex="70" flex-xs="100">
+			<md-input-container class="md-block">
+			  <label>Dominio</label>
+			  <input type="text" ng-model="webSel.Dom" />
+			</md-input-container>
+			<md-input-container class="md-block">
+			  <label>Clave</label>
+			  <input type="text" ng-model="webSel.Tit" />
+			</md-input-container>
+			<md-input-container class="md-block">
+			  <label>Url completo de la vista</label>
+			  <input type="text" ng-model="webSel.Des" />
+			</md-input-container>
+		</div>
+		<div flex="30" flex-xs="100" >
+			<div layout-xs="row">
+				<div flex-xs="50" flex="100">
+					<div id="mostrarImagen1" class="mi-img" style="min-height: 100px;max-height: 160px"></div>
+				</div>
+				<div flex-xs="50" flex="100" align="center">
+					<md-button id="uploadButton" class="md-raised" ng-click="elegirImagen()"> Elegir Icono </md-button>
+					<input type="file" id="imagen1" class="ng-hide" onchange="angular.element(this).scope().cambiarArchivo(this)"/>
+				</div>
+			</div>
+		</div>
+    </md-dialog-content>
+	<md-dialog-actions layout="row">
+		<md-button class="md-raised md-warn" ng-click="cancelar()" >
+		 Cancelar
+		</md-button>
+		<md-button class="md-raised md-primary" ng-click="guardarCambios()" style="margin-right:20px;" >
+		  Guardar Cambios
+		</md-button>
+	</md-dialog-actions>
+  </form>
+</md-dialog>
+
